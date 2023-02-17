@@ -130,12 +130,15 @@
     :global-prefix "C-SPC")
 
   (batmacs/leader-key
-    "t" '(:ignore t           :which-key "toggles")
+    "t"  '(:ignore t          :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")
-    "b" '(:ignore t              :which-key "buffer")
+    "f"  '(:ignore t :which-key "file")
+    "ff" '(find-file :which-key "find file")
+    "b"  '(:ignore t             :which-key "buffer")
     "be" '(eval-buffer           :which-key "eval buffer")
     "bs" '(counsel-switch-buffer :which-key "switch to buffer")
     "bk" '(kill-this-buffer      :which-key "kill current buffer")))
+
 					; Keybindings
 ;; Global
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; escape to quit prompts
@@ -158,6 +161,7 @@
 ;; TODO: syntax check for English and Ukrainian languages
 ;; TODO: Do not wrap lines
 ;; TODO: transperancy
+;; TODO: switch between separated windows and close that separated windows
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
