@@ -74,10 +74,6 @@
   :config
   (setq ivy-initialinputs-alist nil))
 
-(use-package evil
-  :config
-  (evil-mode 1))
-
 (use-package markdown-mode
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown"))
@@ -130,14 +126,60 @@
     :global-prefix "C-SPC")
 
   (batmacs/leader-key
-    "t"  '(:ignore t          :which-key "toggles")
-    "tt" '(counsel-load-theme :which-key "choose theme")
+    "t"  '(:ignore t                     :which-key "toggles")
+    "tt" '(counsel-load-theme            :which-key "choose theme")
+    "ts" '(hydra-text-scale/body         :which-key "scale text")
+    "tg" '(global-command-log-mode       :which-key "start global command log mode")
+    "tc" '(clm/toggle-command-log-buffer :which-key "toggle command log buffer")
     "f"  '(:ignore t :which-key "file")
     "ff" '(find-file :which-key "find file")
     "b"  '(:ignore t             :which-key "buffer")
     "be" '(eval-buffer           :which-key "eval buffer")
     "bs" '(counsel-switch-buffer :which-key "switch to buffer")
     "bk" '(kill-this-buffer      :which-key "kill current buffer")))
+
+(defun batmacs/evil-hook ()
+  (dolist (mode '(custom-mode
+		  eshell-mode
+		  erc-mode
+		  circe-server-mode
+		  circe-chat-mode
+		  circe-query-mode
+		  sauron-mode
+		  term-mode))
+    (add-to-list 'evil-emacs-state-modes mode)))
+
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  :hook (evil-mode . batmacs/evil-hook)
+  :config
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+(use-package hydra)
+
+(defhydra hydra-text-scale (:timeout 4)
+  "scale text"
+  ("j" text-scale-increase "in")
+  ("k" text-scale-decrease "out")
+  ("f" nil "finished" :exit t))
 
 					; Keybindings
 ;; Global
@@ -152,6 +194,7 @@
 ;; C-h v --- describe variable
 ;; C-x C-f - find file
 ;; C-c o --- toggle command log buffer
+;; C-x C-e - execute (eval) current specific block (not entire buffer)
 ;; when M-x is started type M-o on some function and you can see additional options that you can choose
 
 					; TODOs
@@ -169,7 +212,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(general all-the-icons doom-themes helpful ivy-rich which-key rainbow-delimiters command-log-mode doom-modeline use-package markdown-mode evil counsel)))
+   '(hydra evil-collection general all-the-icons doom-themes helpful ivy-rich which-key rainbow-delimiters command-log-mode doom-modeline use-package markdown-mode evil counsel)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
