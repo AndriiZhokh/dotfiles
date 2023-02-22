@@ -131,9 +131,11 @@
     "ts" '(hydra-text-scale/body         :which-key "scale text")
     "tg" '(global-command-log-mode       :which-key "start global command log mode")
     "tc" '(clm/toggle-command-log-buffer :which-key "toggle command log buffer")
-    "f"  '(:ignore t :which-key "file")
+
+    "f"  '(:ignore f :which-key "file")
     "ff" '(find-file :which-key "find file")
-    "b"  '(:ignore t             :which-key "buffer")
+
+    "b"  '(:ignore b             :which-key "buffer")
     "be" '(eval-buffer           :which-key "eval buffer")
     "bs" '(counsel-switch-buffer :which-key "switch to buffer")
     "bk" '(kill-this-buffer      :which-key "kill current buffer")))
@@ -195,6 +197,11 @@
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
 
+(use-package magit
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
 					; Keybindings
 ;; Global
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; escape to quit prompts
@@ -219,6 +226,7 @@
 ;; TODO: Do not wrap lines
 ;; TODO: transperancy
 ;; TODO: switch between separated windows and close that separated windows
+;; TODO: write bash script that will synchronize current config with dotfile repo folder
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -226,7 +234,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(counsel-projectile projectile hydra evil-collection general all-the-icons doom-themes helpful ivy-rich which-key rainbow-delimiters command-log-mode doom-modeline use-package markdown-mode evil counsel)))
+   '(evil-magit magit counsel-projectile projectile hydra evil-collection general all-the-icons doom-themes helpful ivy-rich which-key rainbow-delimiters command-log-mode doom-modeline use-package markdown-mode evil counsel)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
