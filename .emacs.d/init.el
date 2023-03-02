@@ -16,7 +16,11 @@
 
 (set-face-attribute 'default nil :font "Cascadia Code" :height 110) ; set up font
 
-;; (load-theme 'modus-operandi)                                     ; set default theme
+;; Set the fixed pitch face
+(set-face-attribute 'fixed-pitch nil :font "Cascadia Code" :height 120)
+
+;;Set the variable pitch face
+(set-face-attribute 'variable-pitch nil :font "Arial" :height 130)
 
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
@@ -74,13 +78,6 @@
   :config
   (setq ivy-initialinputs-alist nil))
 
-(use-package markdown-mode
-  :mode ("README\\.md\\'" . gfm-mode)
-  :init (setq markdown-command "multimarkdown"))
-
-(use-package yaml-mode
-  :mode ("\\.yml\\" . yaml-mode))
-
 ;; After first install run the
 ;; M-x all-the-icons-install-fonts
 ;; and select directory where do you want to install the font icons
@@ -93,7 +90,7 @@
 
 (use-package doom-themes
   :init
-  (load-theme 'doom-nord-aurora t)
+  (load-theme 'doom-solarized-light t)
   :config
   (setq doom-themes-enable-bold t
 	doom-themes-enable-italic t))
@@ -123,12 +120,12 @@
 
 (use-package general
   :config
-  (general-create-definer batmacs/leader-key
+  (general-create-definer azh/leader-key
     :keymaps '(normal insert visual emacs)
     :prefix "SPC"
     :global-prefix "C-SPC")
 
-  (batmacs/leader-key
+  (azh/leader-key
     "t"  '(:ignore t                     :which-key "toggles")
     "tt" '(counsel-load-theme            :which-key "choose theme")
     "ts" '(hydra-text-scale/body         :which-key "scale text")
@@ -143,7 +140,8 @@
     "bs" '(counsel-switch-buffer :which-key "switch to buffer")
     "bk" '(kill-this-buffer      :which-key "kill current buffer")))
 
-(defun batmacs/evil-hook ()
+;; for some reason disables evil-mode on start
+(defun azh/evil-hook ()
   (dolist (mode '(custom-mode
 		  eshell-mode
 		  erc-mode
@@ -157,22 +155,9 @@
 (use-package evil
   :ensure t
   :init
-  (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  :hook (evil-mode . batmacs/evil-hook)
   :config
-  (evil-mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
-
-  ;; Use visual line motions even outside of visual-line-mode buffers
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
+  (evil-mode 1))
 
 (use-package evil-collection
   :after evil
@@ -206,6 +191,47 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
+(defun azh/org-mode-setup ()
+  (org-indent-mode)
+  (visual-line-mode 1))
+
+(use-package org
+  :hook (org-mode . azh/org-mode-setup)
+  :config
+  (setq org-ellipsis " ㄱ"
+	org-hide-emphasis-markers t)
+
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+
+  (setq org-agenda-files
+	'("~/Notes/tasks.org")))
+
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ" "Ⅺ" "Ⅻ")))
+
+(dolist (face '((org-level-1 . 1.2)
+		(org-level-2 . 1.1)
+		(org-level-3 . 1.05)
+		(org-level-4 . 1.0)
+		(org-level-5 . 1.1)
+		(org-level-6 . 1.1)
+		(org-level-7 . 1.1)
+		(org-level-8 . 1.1))))
+
+(defun azh/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+	visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :defer t
+  :hook (org-mode . azh/org-mode-visual-fill))
+
 					; Keybindings
 ;; Global
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; escape to quit prompts
@@ -231,6 +257,8 @@
 ;; TODO: transperancy
 ;; TODO: switch between separated windows and close that separated windows
 ;; TODO: write bash script that will synchronize current config with dotfile repo folder
+;; TODO: markdown mode
+;; TODO: yaml mode
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -238,10 +266,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(yaml-mode forge evil-magit magit counsel-projectile projectile hydra evil-collection general all-the-icons doom-themes helpful ivy-rich which-key rainbow-delimiters command-log-mode doom-modeline use-package markdown-mode evil counsel)))
+   '(visual-fill-column visual-fill visual-fill-mode org-bullets yaml-mode forge magit counsel-projectile projectile hydra evil-collection general all-the-icons doom-themes helpful ivy-rich which-key rainbow-delimiters command-log-mode doom-modeline use-package markdown-mode evil counsel)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'dired-find-alternate-file 'disabled nil)
