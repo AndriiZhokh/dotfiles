@@ -206,7 +206,14 @@
   (setq org-log-into-drawer t)
 
   (setq org-agenda-files
-	'("~/Notes/tasks.org")))
+	'("~/Notes/tasks.org"
+	  "~/Notes/birthdays.org"))
+
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+	  (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)"))))
+
+
 
 (use-package org-bullets
   :after org
