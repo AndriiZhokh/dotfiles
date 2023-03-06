@@ -207,11 +207,38 @@
 
   (setq org-agenda-files
 	'("~/Notes/tasks.org"
-	  "~/Notes/birthdays.org"))
+	  "~/Notes/birthdays.org"
+	  "~/Notes/habits.org"))
+
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-graph-column 60)
 
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
 	  (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+
+  (setq org-refile-targets
+	'(("archive.org" :maxlevel . 1)
+	  ("tasks.org" :maxlevel . 1)))
+
+  ;; Save Org buffer after refiling!
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+  ;; This doesn't work for some reason
+  (setq org-tag-alist
+	'((:startgroup)
+	  ; Put mutually exclusive tags here
+	  (:endgroup)
+	  ("@errand" . ?E)
+	  ("@home" . ?H)
+	  ("@work" . ?W)
+	  ("agenda" . ?a)
+	  ("planning" . ?p)
+	  ("publish" . ?P)
+	  ("batch" . ?b)
+	  ("note" . ?n)
+	  ("idea" . ?i)))
 
   ;; Configure custom agenda views
   (setq org-agenda-custom-commands
@@ -225,7 +252,8 @@
 	   ((todo "NEXT"
 		  ((org-agenda-overriding-header "Next Tasks")))))
 
-	  ("W" "Work Tasks" tags-todo "+work")
+	  ;; Include tags with '+' exclude tags with '-'
+	  ("W" "Work Tasks" tags-todo "+work-email")
 
 	  ;;Low-effort next actions
 	  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
@@ -259,7 +287,35 @@
 		   (org-agenda-files org-agenda-files)))
 	    (todo "CANC"
 		  ((org-agenda-overriding-header "Canceled Projects")
-		   (org-agenda-files org-agenda-files))))))))
+		   (org-agenda-files org-agenda-files)))))))
+
+  (setq org-capture-templates
+	`(("t" "Tasks / Projects")
+	  ("tt" "Task" entry (file+olp "~/Notes/tasks.org" "Inbox")
+	   "* TODO %?\n %U\n %a\n %i" :empty-lines 1)
+
+	  ("j" "Journal Entries")
+	  ("jj" "Journal" entry
+	   (file+olp+datetree "~/Notes/journal.org")
+	   "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+	   :clock-in :clock-resume
+	   :empty-lines 1)
+	  ("jm" "Meeting" entry
+	   (file+olp+datetree "~/Notes/journal.org")
+	   "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+	   :clock-in :clock-resume
+	   :empty-lines 1)
+
+	  ("w" "Workflows")
+	  ("we" "Checking Email" entry (file+olp+datetree "~/Notes/journal.org")
+	   "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+
+	  ("m" "Metrics Capture")
+	  ("mw" "Weight" table-line (file+headline "~/Notes/metrics.org" "Weight")
+	   "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
+
+  (define-key global-map (kbd "C-c j")
+    (lambda () (interactive) (org-capture nil "jj"))))
 
 
 
