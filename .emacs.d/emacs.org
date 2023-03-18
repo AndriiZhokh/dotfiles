@@ -144,7 +144,7 @@
 
   (use-package doom-themes
     :init
-    (load-theme 'doom-solarized-light t)
+    (load-theme 'doom-tokyo-night t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
@@ -444,6 +444,7 @@
     (org-bullets-bullet-list '("Ⅰ" "Ⅱ" "Ⅲ" "Ⅳ" "Ⅴ" "Ⅵ" "Ⅶ" "Ⅷ" "Ⅸ" "Ⅹ" "Ⅺ" "Ⅻ")))
 
 #+end_src
+
 *** Org Headers Configuration
 
 #+begin_src emacs-lisp
@@ -458,6 +459,7 @@
                   (org-level-8 . 1.1))))
 
 #+end_src
+
 *** Visual Fill Column
 
 #+begin_src emacs-lisp
@@ -488,12 +490,13 @@
 #+end_src
 
 *** Auto-tangle Configuration Files
+
 #+begin_src emacs-lisp
 
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun azh/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/Notes/emacs.org"))
+                      (expand-file-name "~/dotfiles/.emacs.d/emacs.org"))
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))
@@ -669,3 +672,4 @@ when M-x is started type M-o on some function and you can see additional options
 ** TODO write bash script that will synchronize current config with dotfile repo folder
 ** TODO markdown mode
 ** TODO yaml mode
+** TODO transperency
