@@ -144,12 +144,13 @@
 
   (use-package doom-themes
     :init
-    (load-theme 'doom-tokyo-night t)
+    (load-theme 'doom-ephemeral t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
 
 #+end_src
+
 ** Rainbow Delimiters
 
 #+begin_src emacs-lisp
@@ -169,6 +170,7 @@
     (setq which-key-idle-delay 0.3))
 
 #+end_src
+
 ** Ivy Rich
 
 #+begin_src emacs-lisp
@@ -220,6 +222,7 @@
       "bk" '(kill-this-buffer      :which-key "kill current buffer")))
 
 #+end_src
+
 ** Evil
 
 #+begin_src emacs-lisp
