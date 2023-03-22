@@ -39,7 +39,7 @@
 
 #+begin_src emacs-lisp
 
-(set-face-attribute 'default nil :font "Comic Mono" :height 110) ; set up font
+(set-face-attribute 'default nil :font "Comic Mono" :height 120) ; set up font
 
 ;; Set the fixed pitch face
 (set-face-attribute 'fixed-pitch nil :font "Comic Mono" :height 120)
