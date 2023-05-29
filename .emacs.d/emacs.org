@@ -39,10 +39,12 @@
 
 #+begin_src emacs-lisp
 
-(set-face-attribute 'default nil :font "Comic Mono" :height 120) ; set up font
+;; (set-face-attribute 'default nil :font "Comic Mono" :height 120) ; set up font
+(set-face-attribute 'default nil :font "Cascadia Mono" :height 120) ; set up font
 
 ;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "Comic Mono" :height 120)
+;; (set-face-attribute 'fixed-pitch nil :font "Comic Mono" :height 120)
+(set-face-attribute 'fixed-pitch nil :font "Cascadia Mono" :height 120)
 
 ;;Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Arial" :height 130)
@@ -144,7 +146,9 @@
 
   (use-package doom-themes
     :init
-    (load-theme 'doom-ephemeral t)
+    ;; (load-theme 'doom-ephemeral t)
+    ;; (load-theme 'doom-nord-aurora t)
+    (load-theme 'modus-operandi t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
@@ -506,6 +510,11 @@
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'azh/org-babel-tangle-config)))
 #+end_src
+
+** TODO Imenu
+[[https://youtu.be/YM0TD8Eg9qg][DT Video]]
+
+** TODO Clippy
 
 * Structure Templates
 #+begin_src emacs-lisp
