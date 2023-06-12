@@ -1,5 +1,8 @@
-#+title Emacs From Scratch Configuration
+#+TITLE Emacs From Scratch Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
+#+AUTHOR: Andrew Zhokh
+#+DATE: Feb 16 2023
+#+STARTUP: show2levels
 
 * Basic UI Configuration
 
@@ -223,7 +226,12 @@
       "b"  '(:ignore b             :which-key "buffer")
       "be" '(eval-buffer           :which-key "eval buffer")
       "bs" '(counsel-switch-buffer :which-key "switch to buffer")
-      "bk" '(kill-this-buffer      :which-key "kill current buffer")))
+      "bk" '(kill-this-buffer      :which-key "kill current buffer")
+
+      "o"   '(:ignore o     :which-key "org mode")
+      "oc"  '(:ignore c     :which-key "clock")
+      "oco" '(org-clock-out :which-key "clock out")
+      "oci" '(org-clock-in  :which-key "clock in")))
 
 #+end_src
 
@@ -321,6 +329,9 @@
     :config
     (setq org-ellipsis " ㄱ"
           org-hide-emphasis-markers t)
+
+    (setq org-src-tab-acts-natively t)
+    (setq org-src-preserve-indentation t)
 
     (setq org-agenda-start-with-log-mode t)
     (setq org-log-done 'time)
@@ -537,11 +548,10 @@
 #+end_src
 
 * Languages
-
 ** Language Servers
 
 #+begin_src emacs-lisp
-
+  
   (defun azh/lsp-mode-setup ()
     (setq lsp-headerline-breadcrump-segments '(path-up-to-project file symbols))
     (lsp-headerline-breadcrump-mode))
