@@ -88,6 +88,7 @@
 (use-package command-log-mode)
 
 #+end_src
+
 ** Ivy
 
 #+begin_src emacs-lisp
@@ -111,6 +112,7 @@
     (ivy-mode 1))
 
 #+end_src
+
 ** Counsel
 
 #+begin_src emacs-lisp
@@ -125,6 +127,7 @@
     (setq ivy-initialinputs-alist nil))
 
 #+end_src
+
 ** All The Icons
   After first install run the (M-x) all-the-icons-install-fonts and select directory where do you want to install the font icons
 
@@ -134,6 +137,7 @@
     :if (display-graphic-p))
 
 #+end_src
+
 ** Doom Modeline
 
 #+begin_src emacs-lisp
@@ -143,6 +147,7 @@
     :custom ((doom-modeline-height 15)))
 
 #+end_src
+
 ** Doom Themes
 
 #+begin_src emacs-lisp
@@ -151,7 +156,17 @@
     :init
     ;; (load-theme 'doom-ephemeral t)
     ;; (load-theme 'doom-nord-aurora t)
-    (load-theme 'modus-operandi t)
+    (load-theme 'doom-nord t)
+    ;; (load-theme 'doom-badger t)
+    ;; (load-theme 'doom-flatwhite t)
+    ;; (load-theme 'doom-laserwave t)
+    ;; (load-theme 'doom-manegarm t)
+    ;; (load-theme 'doom-material-dark t)
+    ;; (load-theme 'doom-miramare t)
+    ;; (load-theme 'doom-material t)
+    ;; (load-theme 'doom-lantern t)
+    ;; (load-theme 'doom-city-lights t)
+    ;; (load-theme 'modus-operandi t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
@@ -166,6 +181,7 @@
   :hook (prog-mode . rainbow-delimiters-mode))
   
 #+end_src
+
 ** Which Key
 
 #+begin_src emacs-lisp
@@ -187,6 +203,7 @@
     (ivy-rich-mode 1))
 
 #+end_src
+
 ** Helpful
 
 #+begin_src emacs-lisp
@@ -202,6 +219,7 @@
     ([remap-describe-key] . helpful-key))
 
 #+end_src
+
 ** General
 
 #+begin_src emacs-lisp
@@ -259,6 +277,7 @@
     (evil-mode 1))
 
 #+end_src
+
 ** Evil Collection
 
 #+begin_src emacs-lisp
@@ -269,6 +288,7 @@
     (evil-collection-init))
 
 #+end_src
+
 ** Hydra
 
 #+begin_src emacs-lisp
@@ -282,6 +302,7 @@
     ("f" nil "finished" :exit t))
 
 #+end_src
+
 ** Projectile
 
 #+begin_src emacs-lisp
@@ -298,6 +319,7 @@
     (setq projectile-switch-project-action #'projectile-dired))
 
 #+end_src
+
 ** Counsel Projectile
 
 #+begin_src emacs-lisp
@@ -306,6 +328,7 @@
     :config (counsel-projectile-mode))
 
 #+end_src
+
 ** Magit
 
 #+begin_src emacs-lisp
@@ -316,6 +339,7 @@
     (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 #+end_src
+
 ** Ord Mode
 
 #+begin_src emacs-lisp
@@ -665,6 +689,7 @@ to use language server features
   (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)   ; switch to buffer
 
 #+end_src
+
 ** Map Specific Mode
 
 #+begin_src emacs-lisp
