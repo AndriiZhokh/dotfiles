@@ -180,6 +180,8 @@
 
 #+end_src
 
+*** Currently everforest theme is not perfect, still has some not usefull coloring related to visual selection need to correct that
+Also in original code from the github there was commented colors for org mode source blocks and I have fixed that and now to use everforest theme I need to copy folder from dotfiles to config folder .emacs.d
 ** Rainbow Delimiters
 
 #+begin_src emacs-lisp
