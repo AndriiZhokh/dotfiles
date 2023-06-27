@@ -152,11 +152,17 @@
 
 #+begin_src emacs-lisp
 
+(add-to-list 'custom-theme-load-path "c:/Users/Andrii_Zhokh/.emacs.d/everforest-theme")
+
+#+end_src
+
+#+begin_src emacs-lisp
+
   (use-package doom-themes
     :init
     ;; (load-theme 'doom-ephemeral t)
     ;; (load-theme 'doom-nord-aurora t)
-    (load-theme 'doom-nord t)
+    ;; (load-theme 'doom-nord t)
     ;; (load-theme 'doom-badger t)
     ;; (load-theme 'doom-flatwhite t)
     ;; (load-theme 'doom-laserwave t)
@@ -167,6 +173,7 @@
     ;; (load-theme 'doom-lantern t)
     ;; (load-theme 'doom-city-lights t)
     ;; (load-theme 'modus-operandi t)
+    (load-theme 'everforest-hard-dark t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
@@ -229,7 +236,7 @@
     (general-create-definer azh/leader-key
       :keymaps '(normal insert visual emacs)
       :prefix "SPC"
-      :global-prefix "C-SPC")
+      :global-prefix "M-SPC")
 
     (azh/leader-key
       "t"  '(:ignore t                     :which-key "toggles")
@@ -246,7 +253,8 @@
       "bs" '(counsel-switch-buffer :which-key "switch to buffer")
       "bk" '(kill-this-buffer      :which-key "kill current buffer")
 
-      "o"   '(:ignore o     :which-key "org mode")
+      "o"   '(:ignore o                         :which-key "org mode")
+      "os"  '(org-insert-structure-template     :which-key "insert sorce block")
       "oc"  '(:ignore c     :which-key "clock")
       "oco" '(org-clock-out :which-key "clock out")
       "oci" '(org-clock-in  :which-key "clock in")))
@@ -544,6 +552,26 @@
       (org-babel-tangle))))
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'azh/org-babel-tangle-config)))
+#+end_src
+
+** Rainbow Mode
+https://elpa.gnu.org/packages/rainbow-mode.html
+
+#+begin_src emacs-lisp
+
+(use-package rainbow-mode)
+
+(dolist (mode '(emacs-lisp-mode-hook
+                org-mode-hook))
+  (add-hook mode 'my-enable-rainbow-mode))
+
+#+end_src
+
+#+begin_src emacs-lisp
+
+(defun my-enable-rainbow-mode ()
+  (rainbow-mode 1))
+
 #+end_src
 
 ** TODO Imenu
