@@ -594,6 +594,8 @@ https://elpa.gnu.org/packages/rainbow-mode.html
 [[https://youtu.be/YM0TD8Eg9qg][DT Video]]
 
 ** TODO Clippy
+** TODO Harpoon
+https://github.com/otavioschwanck/harpoon.el
 
 * Structure Templates
 #+begin_src emacs-lisp
@@ -751,6 +753,10 @@ C-x C-f - find file
 C-c o --- toggle command log buffer
 C-x C-e - execute (eval) current specific block (not entire buffer)
 when M-x is started type M-o on some function and you can see additional options that you can choose
+
+C-w - cut text
+M-w - copy text
+C-y - paste text
 
 * TODOs
 ** TODO Start Emacs in home directory
