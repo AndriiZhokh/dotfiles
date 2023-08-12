@@ -166,7 +166,10 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 
 #+begin_src emacs-lisp
 
-(add-to-list 'custom-theme-load-path "c:/Users/Andrii_Zhokh/.emacs.d/everforest-theme")
+(setq everforest-path
+      (concat "c:/Users/" user-login-name "/.emacs.d/everforest-theme"))
+
+(add-to-list 'custom-theme-load-path everforest-path)
 
 #+end_src
 
