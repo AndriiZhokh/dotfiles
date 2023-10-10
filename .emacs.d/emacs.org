@@ -42,12 +42,12 @@
 
 #+begin_src emacs-lisp
 
-;; (set-face-attribute 'default nil :font "Comic Mono" :height 120) ; set up font
 (set-face-attribute 'default nil :font "Comic Mono" :height 120) ; set up font
+;; (set-face-attribute 'default nil :font "Cascadia Code" :height 120) ; set up font
 
 ;; Set the fixed pitch face
-;; (set-face-attribute 'fixed-pitch nil :font "Comic Mono" :height 120)
 (set-face-attribute 'fixed-pitch nil :font "Comic Mono" :height 120)
+;; (set-face-attribute 'fixed-pitch nil :font "Cascadia Code" :height 120)
 
 ;;Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Arial" :height 130)
@@ -760,6 +760,8 @@ when M-x is started type M-o on some function and you can see additional options
 C-w - cut text
 M-w - copy text
 C-y - paste text
+
+C-x o - go to other window
 
 * TODOs
 ** TODO Start Emacs in home directory
