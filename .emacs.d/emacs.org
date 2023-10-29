@@ -191,6 +191,7 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
     ;; (load-theme 'doom-city-lights t)
     ;; (load-theme 'modus-operandi t)
     (load-theme 'everforest-hard-dark t)
+    ;; (load-theme 'catppuccin t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
@@ -367,7 +368,7 @@ Also in original code from the github there was commented colors for org mode so
 
 #+end_src
 
-** Ord Mode
+** Org Mode
 
 #+begin_src emacs-lisp
 
@@ -518,14 +519,14 @@ Also in original code from the github there was commented colors for org mode so
 
 #+begin_src emacs-lisp
 
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
-                  (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1))))
+  (dolist (face '((org-level-1 . 0.9)
+                  (org-level-2 . 0.9)
+                  (org-level-3 . 0.9)
+                  (org-level-4 . 0.9)
+                  (org-level-5 . 0.9)
+                  (org-level-6 . 0.9)
+                  (org-level-7 . 0.9)
+                  (org-level-8 . 0.9))))
 
 #+end_src
 
@@ -599,6 +600,9 @@ https://elpa.gnu.org/packages/rainbow-mode.html
 ** TODO Clippy
 ** TODO Harpoon
 https://github.com/otavioschwanck/harpoon.el
+** TODO ERadio
+- [[https://github.com/olavfosse/eradio][GitHub Link]]
+- [[https://youtu.be/P8p3zXSzY4c?si=I1aeYXLUetLnx4Ja][DT Youtube video]]
 
 * Structure Templates
 #+begin_src emacs-lisp
