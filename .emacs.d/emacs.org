@@ -410,7 +410,6 @@ Also in original code from the github there was commented colors for org mode so
     ;; Save Org buffer after refiling!
     (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-    ;; This doesn't work for some reason
     (setq org-tag-alist
           '((:startgroup)
             ; Put mutually exclusive tags here
@@ -418,6 +417,7 @@ Also in original code from the github there was commented colors for org mode so
             ("@errand" . ?E)
             ("@home" . ?H)
             ("@work" . ?W)
+            ("youtube" . ?y)
             ("agenda" . ?a)
             ("planning" . ?p)
             ("publish" . ?P)
