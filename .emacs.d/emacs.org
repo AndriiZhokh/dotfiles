@@ -275,9 +275,10 @@ Also in original code from the github there was commented colors for org mode so
 
       "o"   '(:ignore o                         :which-key "org mode")
       "os"  '(org-insert-structure-template     :which-key "insert sorce block")
-      "oc"  '(:ignore c     :which-key "clock")
-      "oco" '(org-clock-out :which-key "clock out")
-      "oci" '(org-clock-in  :which-key "clock in")))
+      "oc"  '(:ignore c            :which-key "clock")
+      "oco" '(org-clock-out        :which-key "clock out")
+      "oci" '(org-clock-in         :which-key "clock in")
+      "ot"  '(org-set-tags-command :which-key "set tags")))
 
 #+end_src
 
