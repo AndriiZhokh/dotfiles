@@ -694,7 +694,7 @@ https://github.com/otavioschwanck/harpoon.el
 
 - lsp-ivy-workspace-symbol - search though the project
 
-** Typescript
+** TypeScript
 
 #+begin_src emacs-lisp
 
@@ -711,6 +711,16 @@ npm i -g typescript-language-server
 and
 npm i -g typescript
 to use language server features
+
+** JavaScript
+
+#+begin_src emacs-lisp
+
+  (use-package js2-mode
+    :mode "\\.js\\'"
+    :hook (js2-mode . lsp-deferred))
+
+#+end_src
 
 * Company Mode
 
