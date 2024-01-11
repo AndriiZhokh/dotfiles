@@ -273,6 +273,9 @@ Also in original code from the github there was commented colors for org mode so
       "bs" '(counsel-switch-buffer :which-key "switch to buffer")
       "bk" '(kill-this-buffer      :which-key "kill current buffer")
 
+      "d"  '(:ignore d               :which-key "dired")
+      "df" '(dired-create-empty-file :which-key "create new file")
+
       "o"   '(:ignore o                         :which-key "org mode")
       "os"  '(org-insert-structure-template     :which-key "insert sorce block")
       "oc"  '(:ignore c            :which-key "clock")
