@@ -43,11 +43,11 @@
 #+begin_src emacs-lisp
 
 ;; (set-face-attribute 'default nil :font "Comic Mono" :height 120) ; set up font
-(set-face-attribute 'default nil :font "Comic Mono" :height 120) ; set up font
+(set-face-attribute 'default nil :font "Cascadia Code" :height 120) ; set up font
 
 ;; Set the fixed pitch face
 ;; (set-face-attribute 'fixed-pitch nil :font "Comic Mono" :height 120)
-(set-face-attribute 'fixed-pitch nil :font "Comic Mono" :height 120)
+(set-face-attribute 'fixed-pitch nil :font "Cascadia Code" :height 120)
 
 ;;Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Arial" :height 130)
@@ -191,6 +191,7 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
     ;; (load-theme 'doom-city-lights t)
     ;; (load-theme 'modus-operandi t)
     (load-theme 'everforest-hard-dark t)
+    ;; (load-theme 'catppuccin t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
@@ -272,11 +273,15 @@ Also in original code from the github there was commented colors for org mode so
       "bs" '(counsel-switch-buffer :which-key "switch to buffer")
       "bk" '(kill-this-buffer      :which-key "kill current buffer")
 
+      "d"  '(:ignore d               :which-key "dired")
+      "df" '(dired-create-empty-file :which-key "create new file")
+
       "o"   '(:ignore o                         :which-key "org mode")
       "os"  '(org-insert-structure-template     :which-key "insert sorce block")
-      "oc"  '(:ignore c     :which-key "clock")
-      "oco" '(org-clock-out :which-key "clock out")
-      "oci" '(org-clock-in  :which-key "clock in")))
+      "oc"  '(:ignore c            :which-key "clock")
+      "oco" '(org-clock-out        :which-key "clock out")
+      "oci" '(org-clock-in         :which-key "clock in")
+      "ot"  '(org-set-tags-command :which-key "set tags")))
 
 #+end_src
 
@@ -367,7 +372,7 @@ Also in original code from the github there was commented colors for org mode so
 
 #+end_src
 
-** Ord Mode
+** Org Mode
 
 #+begin_src emacs-lisp
 
@@ -408,7 +413,6 @@ Also in original code from the github there was commented colors for org mode so
     ;; Save Org buffer after refiling!
     (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-    ;; This doesn't work for some reason
     (setq org-tag-alist
           '((:startgroup)
             ; Put mutually exclusive tags here
@@ -416,6 +420,7 @@ Also in original code from the github there was commented colors for org mode so
             ("@errand" . ?E)
             ("@home" . ?H)
             ("@work" . ?W)
+            ("youtube" . ?y)
             ("agenda" . ?a)
             ("planning" . ?p)
             ("publish" . ?P)
@@ -518,14 +523,14 @@ Also in original code from the github there was commented colors for org mode so
 
 #+begin_src emacs-lisp
 
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
-                  (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1))))
+  (dolist (face '((org-level-1 . 0.9)
+                  (org-level-2 . 0.9)
+                  (org-level-3 . 0.9)
+                  (org-level-4 . 0.9)
+                  (org-level-5 . 0.9)
+                  (org-level-6 . 0.9)
+                  (org-level-7 . 0.9)
+                  (org-level-8 . 0.9))))
 
 #+end_src
 
@@ -599,6 +604,9 @@ https://elpa.gnu.org/packages/rainbow-mode.html
 ** TODO Clippy
 ** TODO Harpoon
 https://github.com/otavioschwanck/harpoon.el
+** TODO ERadio
+- [[https://github.com/olavfosse/eradio][GitHub Link]]
+- [[https://youtu.be/P8p3zXSzY4c?si=I1aeYXLUetLnx4Ja][DT Youtube video]]
 
 * Structure Templates
 #+begin_src emacs-lisp
@@ -686,7 +694,7 @@ https://github.com/otavioschwanck/harpoon.el
 
 - lsp-ivy-workspace-symbol - search though the project
 
-** Typescript
+** TypeScript
 
 #+begin_src emacs-lisp
 
@@ -703,6 +711,16 @@ npm i -g typescript-language-server
 and
 npm i -g typescript
 to use language server features
+
+** JavaScript
+
+#+begin_src emacs-lisp
+
+  (use-package js2-mode
+    :mode "\\.js\\'"
+    :hook (js2-mode . lsp-deferred))
+
+#+end_src
 
 * Company Mode
 
@@ -760,6 +778,8 @@ when M-x is started type M-o on some function and you can see additional options
 C-w - cut text
 M-w - copy text
 C-y - paste text
+
+C-x o - go to other window
 
 * TODOs
 ** TODO Start Emacs in home directory
