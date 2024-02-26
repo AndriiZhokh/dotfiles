@@ -784,6 +784,8 @@ C-x o - go to other window
 * TODOs
 ** TODO Start Emacs in home directory
 ** TODO font ligatures support
+[[https://github.com/mickeynp/ligature.el][ligatures.el]]
+** TODO Org-Roam
 ** TODO do not open new dired buffer every time when navigating through folders
 ** TODO syntax check for English and Ukrainian languages
 ** TODO Do not wrap lines
