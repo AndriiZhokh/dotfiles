@@ -1,7 +1,5 @@
 #+TITLE: Emacs From Scratch Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
-#+AUTHOR: Andrew Zhokh
-#+DATE: Feb 16 2023
 #+STARTUP: show2levels
 
 * Basic UI Configuration
@@ -166,6 +164,26 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 
 #+begin_src emacs-lisp
 
+(defun catppuccin-frappe ()
+  "(interactive) allows function to be accessible from M-x"
+  (interactive)
+  (setq catppuccin-flavor 'frappe)
+  (catppuccin-reload))
+
+#+end_src
+
+#+begin_src emacs-lisp
+
+(defun catppuccin-latte ()
+  "(interactive) allows function to be accessible from M-x"
+  (interactive)
+  (setq catppuccin-flavor 'latte)
+  (catppuccin-reload))
+
+#+end_src
+
+#+begin_src emacs-lisp
+
 (setq everforest-path
       (concat "c:/Users/" user-login-name "/.emacs.d/everforest-theme"))
 
@@ -190,7 +208,8 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
     ;; (load-theme 'doom-lantern t)
     ;; (load-theme 'doom-city-lights t)
     ;; (load-theme 'modus-operandi t)
-    (load-theme 'everforest-hard-dark t)
+    ;; (load-theme 'everforest-hard-dark t)
+    (load-theme 'doom-flatwhite t)
     ;; (load-theme 'catppuccin t)
     :config
     (setq doom-themes-enable-bold t
@@ -278,9 +297,12 @@ Also in original code from the github there was commented colors for org mode so
 
       "o"   '(:ignore o                         :which-key "org mode")
       "os"  '(org-insert-structure-template     :which-key "insert sorce block")
-      "oc"  '(:ignore c            :which-key "clock")
-      "oco" '(org-clock-out        :which-key "clock out")
-      "oci" '(org-clock-in         :which-key "clock in")
+
+      "oc"  '(:ignore c                   :which-key "clock")
+      "oco" '(org-clock-out               :which-key "clock out")
+      "oci" '(org-clock-in                :which-key "clock in")
+      "ocu" '(org-clock-update-time-maybe :which-key "clock update")
+
       "ot"  '(org-set-tags-command :which-key "set tags")))
 
 #+end_src
@@ -403,7 +425,7 @@ Also in original code from the github there was commented colors for org mode so
     (setq org-habit-graph-column 60)
 
     (setq org-todo-keywords
-          '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+          '((sequence "TODO(t)" "IN PROGRESS(i)" "NEXT(n)" "|" "DONE(d!)")
             (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
     (setq org-refile-targets
@@ -720,6 +742,12 @@ to use language server features
     :mode "\\.js\\'"
     :hook (js2-mode . lsp-deferred))
 
+#+end_src
+
+** PowerShell
+
+#+begin_src emacs-lisp
+(use-package powershell)
 #+end_src
 
 * Company Mode
