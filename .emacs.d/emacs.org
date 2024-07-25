@@ -167,7 +167,8 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 #+begin_src emacs-lisp
 
   (use-package doom-modeline
-    :init (doom-modeline-mode 1)
+    :ensure t
+    :hook (after-init . doom-modeline-mode)
     :custom ((doom-modeline-height 15)))
 
 #+end_src
@@ -245,7 +246,7 @@ Also in original code from the github there was commented colors for org mode so
 #+begin_src emacs-lisp
 
   (use-package which-key
-    :init (which-key-mode)
+    :hook (after-init . which-key-mode)
     :diminish which-key-mode
     :config
     (setq which-key-idle-delay 0.3))
@@ -257,8 +258,7 @@ Also in original code from the github there was commented colors for org mode so
 #+begin_src emacs-lisp
 
   (use-package ivy-rich
-    :init
-    (ivy-rich-mode 1))
+    :hook (after-init . ivy-rich-mode))
 
 #+end_src
 
@@ -267,6 +267,7 @@ Also in original code from the github there was commented colors for org mode so
 #+begin_src emacs-lisp
 
   (use-package helpful
+    :commands (helpful-callable helpful-variable helpful-command helpful-key)
     :custom
     (counsel-describe-function-function #'helpful-callable)
     (counsel-describe-variable-function #'helpful-variable)
@@ -674,10 +675,8 @@ https://github.com/otavioschwanck/harpoon.el
   (use-package lsp-mode
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . azh/lsp-mode-setup)
-    :init
-    (setq lsp-keymap-prefix "C-c l") ;; Or 'C-l', 's-l'
-    :config
-    (lsp-enable-which-key-integration t))
+    :init (setq lsp-keymap-prefix "C-c l") ;; Or 'C-l', 's-l'
+    :hook ((lsp-enable-which-key-integration t)))
 
 #+end_src
 
