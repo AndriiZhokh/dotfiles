@@ -16,6 +16,7 @@
   (global-display-line-numbers-mode 1)                       ; display line numbers
   (set-fringe-mode 10)                                       ; vertical margins
   (setq-default tab-width 2)                                 ; setting default tab width
+  (setq-default indent-tabs-mode nil)
 
   (setq display-line-numbers-type 'relative)                 ; display relative line numbers
   (setq inhibit-startup-message t)                           ; do not show default startup screen
