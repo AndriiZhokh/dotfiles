@@ -90,6 +90,16 @@
 #+end_src
 
 * Packages
+** ripgrep
+Need to install this package because projectile-ripgrep command needs this package
+
+#+begin_src emacs-lisp
+
+(use-package ripgrep
+  :defer t)
+
+#+end_src
+
 ** Command Log Mode
 *global-command-log-mode* need to be enabled first
 *clm/toggle-command-log-buffer* (C-c o) to display buffer that will show your current pressed keys and commands
@@ -806,6 +816,7 @@ to use language server features
 
 C-h f --- describe function
 C-h v --- describe variable
+C-h R --- search and read manual pages
 C-x C-f - find file
 C-c o --- toggle command log buffer
 C-x C-e - execute (eval) current specific block (not entire buffer)
@@ -816,6 +827,7 @@ M-w - copy text
 C-y - paste text
 
 C-x o - go to other window
+C-x 0 - close window
 
 * TODOs
 ** TODO Start Emacs in home directory
@@ -826,8 +838,6 @@ C-x o - go to other window
 ** TODO syntax check for English and Ukrainian languages
 ** TODO Do not wrap lines
 ** TODO transperancy
-** TODO switch between separated windows and close that separated windows
 ** TODO write bash script that will synchronize current config with dotfile repo folder
 ** TODO markdown mode
 ** TODO yaml mode
-** TODO transperency
