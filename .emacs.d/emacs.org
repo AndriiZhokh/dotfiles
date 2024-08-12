@@ -187,9 +187,22 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 ** Doom Themes
 
 #+begin_src emacs-lisp
+(defun azh/catppuccin-headers-hight-config ()
+  (setq catppuccin-height-title-1 1.1
+        catppuccin-height-title-2 1.1
+        catppuccin-height-title-3 1.1
+        catppuccin-height-doc-title 1.44)
+)
+#+end_src
 
-(defun catppuccin-frappe ()
-  "(interactive) allows function to be accessible from M-x"
+#+begin_src emacs-lisp
+
+(defun azh/catppuccin-set-frappe ()
+  (setq catppuccin-flavor 'frappe))
+
+(defun azh/catppuccin-switch-to-frappe ()
+  "switch to soft dark catppuccin color scheme"
+  ;; (interactive) allows function to be accessible from M-x
   (interactive)
   (setq catppuccin-flavor 'frappe)
   (catppuccin-reload))
@@ -198,8 +211,12 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 
 #+begin_src emacs-lisp
 
-(defun catppuccin-latte ()
-  "(interactive) allows function to be accessible from M-x"
+(defun azh/catppuccin-set-latte ()
+  (setq catppuccin-flavor 'latte))
+
+(defun azh/catppuccin-switch-to-latte ()
+  "switch to light catppuccin color scheme"
+  ;; (interactive) allows function to be accessible from M-x
   (interactive)
   (setq catppuccin-flavor 'latte)
   (catppuccin-reload))
@@ -219,25 +236,23 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 
   (use-package doom-themes
     :init
-    ;; (load-theme 'doom-ephemeral t)
-    ;; (load-theme 'doom-nord-aurora t)
-    ;; (load-theme 'doom-nord t)
-    ;; (load-theme 'doom-badger t)
-    ;; (load-theme 'doom-flatwhite t)
-    ;; (load-theme 'doom-laserwave t)
-    ;; (load-theme 'doom-manegarm t)
-    ;; (load-theme 'doom-material-dark t)
-    ;; (load-theme 'doom-miramare t)
-    ;; (load-theme 'doom-material t)
-    ;; (load-theme 'doom-lantern t)
-    ;; (load-theme 'doom-city-lights t)
-    ;; (load-theme 'modus-operandi t)
-    (load-theme 'everforest-hard-dark t)
-    ;; (load-theme 'doom-flatwhite t)
-    ;; (load-theme 'catppuccin t)
+    ;; (load-theme 'everforest-hard-dark t)
+    (azh/catppuccin-set-frappe)
+    (azh/catppuccin-headers-hight-config)
+    (load-theme 'catppuccin t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
+
+#+end_src
+
+Reset catppuccin theme heading font weight
+#+begin_src emacs-lisp
+
+  (custom-set-faces
+    '(org-level-1 ((t (:weight normal))))
+    '(org-level-2 ((t (:weight normal))))
+    '(org-level-3 ((t (:weight normal)))))
 
 #+end_src
 
@@ -758,6 +773,7 @@ to use language server features
 
   (use-package js2-mode
     :mode "\\.js\\'"
+    :config (setq js-indent-level 2)
     :hook (js2-mode . lsp-deferred))
 
 #+end_src
@@ -841,3 +857,4 @@ C-x 0 - close window
 ** TODO write bash script that will synchronize current config with dotfile repo folder
 ** TODO markdown mode
 ** TODO yaml mode
+** TODO customize (org-export-backends) probably with M-x (customize-option) or try in configuration file
