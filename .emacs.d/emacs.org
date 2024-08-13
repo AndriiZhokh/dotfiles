@@ -184,28 +184,16 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 
 #+end_src
 
-** Doom Themes
+** Catppuccin Theme
 
-#+begin_src emacs-lisp
-(defun azh/catppuccin-headers-hight-config ()
-  (setq catppuccin-height-title-1 1.1
-        catppuccin-height-title-2 1.1
-        catppuccin-height-title-3 1.1
-        catppuccin-height-doc-title 1.44)
-)
-#+end_src
-
+Reset catppuccin theme heading font weight
 #+begin_src emacs-lisp
 
-(defun azh/catppuccin-set-frappe ()
-  (setq catppuccin-flavor 'frappe))
-
-(defun azh/catppuccin-switch-to-frappe ()
-  "switch to soft dark catppuccin color scheme"
-  ;; (interactive) allows function to be accessible from M-x
-  (interactive)
-  (setq catppuccin-flavor 'frappe)
-  (catppuccin-reload))
+  (defun azh/set-org-level-weight ()
+    (custom-set-faces
+      '(org-level-1 ((t (:weight normal))))
+      '(org-level-2 ((t (:weight normal))))
+      '(org-level-3 ((t (:weight normal))))))
 
 #+end_src
 
@@ -225,6 +213,43 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 
 #+begin_src emacs-lisp
 
+(defun azh/catppuccin-set-frappe ()
+  (setq catppuccin-flavor 'frappe)
+  (catppuccin-reload))
+
+(defun azh/catppuccin-switch-to-frappe ()
+  "switch to soft dark catppuccin color scheme"
+  ;; (interactive) allows function to be accessible from M-x
+  (interactive)
+  (setq catppuccin-flavor 'frappe)
+  (catppuccin-reload))
+
+#+end_src
+
+#+begin_src emacs-lisp
+(defun azh/catppuccin-headers-hight-config ()
+  (setq catppuccin-height-title-1 1.1
+        catppuccin-height-title-2 1.1
+        catppuccin-height-title-3 1.1
+        catppuccin-height-doc-title 1.44)
+)
+#+end_src
+
+#+begin_src emacs-lisp
+
+  (use-package catppuccin-theme
+    :config
+    (load-theme 'catppuccin t)
+    (azh/set-org-level-weight)
+    (azh/catppuccin-headers-hight-config)
+    (azh/catppuccin-set-frappe))
+
+#+end_src
+
+** Doom Themes
+
+#+begin_src emacs-lisp
+
 (setq everforest-path
       (concat "c:/Users/" user-login-name "/.emacs.d/everforest-theme"))
 
@@ -237,22 +262,9 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
   (use-package doom-themes
     :init
     ;; (load-theme 'everforest-hard-dark t)
-    (azh/catppuccin-set-frappe)
-    (azh/catppuccin-headers-hight-config)
-    (load-theme 'catppuccin t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
-
-#+end_src
-
-Reset catppuccin theme heading font weight
-#+begin_src emacs-lisp
-
-  (custom-set-faces
-    '(org-level-1 ((t (:weight normal))))
-    '(org-level-2 ((t (:weight normal))))
-    '(org-level-3 ((t (:weight normal)))))
 
 #+end_src
 
