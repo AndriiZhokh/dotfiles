@@ -53,11 +53,11 @@
 
 #+begin_src emacs-lisp
 
-(set-face-attribute 'default nil :font "Comic Mono" :height 120) ; set up font
+(set-face-attribute 'default nil :font "Iosevka NFP" :height 130) ; set up font
 ;; (set-face-attribute 'default nil :font "Cascadia Code" :height 120) ; set up font
 
 ;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "Comic Mono" :height 120)
+(set-face-attribute 'fixed-pitch nil :font "Iosevka NFP" :height 130)
 ;; (set-face-attribute 'fixed-pitch nil :font "Cascadia Code" :height 120)
 
 ;;Set the variable pitch face
@@ -613,7 +613,7 @@ Also in original code from the github there was commented colors for org mode so
 #+begin_src emacs-lisp
 
   (use-package visual-fill-column
-    :init (setq visual-fill-column-width 100
+    :init (setq visual-fill-column-width 80
                 visual-fill-column-center-text t)
     :hook (org-mode . visual-fill-column-mode))
 
