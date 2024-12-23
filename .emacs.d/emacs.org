@@ -28,6 +28,24 @@
 
 #+end_src
 
+Enable parenthesis matching globally for some reason doesn't work for matching {}
+#+begin_src emacs-lisp
+
+  (show-paren-mode 1)
+
+#+end_src
+
+Working alternative for (show-parem-mode)
+#+begin_export emacs-lisp
+
+  (add-hook 'lisp-interaction-mode-hook
+          (lambda ()
+            (print "opened scratch buffer")
+            (modify-syntax-entry ?{ "(}")
+            (modify-syntax-entry ?} "){")))
+
+#+end_export
+
 * Set Default Encoding System
 
 #+begin_src emacs-lisp
@@ -99,6 +117,10 @@ Need to install this package because projectile-ripgrep command needs this packa
   :defer t)
 
 #+end_src
+** TODO consult / embark / wgrep
+https://github.com/minad/consult
+https://github.com/oantolin/embark
+https://github.com/mhayashi1120/Emacs-wgrep
 
 ** Command Log Mode
 *global-command-log-mode* need to be enabled first
@@ -477,7 +499,7 @@ Also in original code from the github there was commented colors for org mode so
     (setq org-habit-graph-column 60)
 
     (setq org-todo-keywords
-          '((sequence "TODO(t)" "IN PROGRESS(i)" "NEXT(n)" "|" "DONE(d!)")
+          '((sequence "TODO(t)" "IN PROGRESS(i)" "IN QA(q)" "NEXT(n)" "|" "DONE(d!)")
             (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
     (setq org-refile-targets
@@ -613,7 +635,7 @@ Also in original code from the github there was commented colors for org mode so
 #+begin_src emacs-lisp
 
   (use-package visual-fill-column
-    :init (setq visual-fill-column-width 80
+    :init (setq visual-fill-column-width 120
                 visual-fill-column-center-text t)
     :hook (org-mode . visual-fill-column-mode))
 
@@ -668,6 +690,34 @@ https://elpa.gnu.org/packages/rainbow-mode.html
 
 #+end_src
 
+** Elfeed
+
+#+begin_src emacs-lisp
+
+(use-package elfeed
+  :config
+  (setq elfeed-feeds
+    '(("http://rss.cnn.com/rss/cnn_topstories.rs" news)
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCFoxNqE6szlu36aM4XGs-SA" youtube)
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCwn6xfCxYdajIejf7O-kMIw" youtube)
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UC_HbtvdzJe4Q69eqWHgltnw" youtube)
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCSodZtaofZ94mt8UZp44e5A" youtube))))
+
+#+end_src
+
+** TODO smartparens
+- doesn't work in scratch buffer
+
+#+begin_src emacs-lisp
+
+  (use-package smartparens
+    :ensure smartparens
+    :hook (prog-mode text-mode markdown-mode, lisp-interaction-mode)
+    :config (require 'smartparens-config))
+
+#+end_src
+
+** TODO evil-smartparens
 ** TODO Imenu
 [[https://youtu.be/YM0TD8Eg9qg][DT Video]]
 
