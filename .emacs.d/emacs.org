@@ -890,6 +890,16 @@ to use language server features
 
 #+end_src
 
+* custom functions
+
+#+begin_src emacs-lisp
+
+  (defun azh/insert-current-date ()
+    "Insert the current date in YYYY-MM-DD format at point"
+    (interactive)
+    (insert (format-time-string "%Y-%m-%d")))
+
+#+end_src
 * Commands
 - org-babel-tangle
 
