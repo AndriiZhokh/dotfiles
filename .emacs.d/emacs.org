@@ -909,6 +909,26 @@ to use language server features
     (insert (format-time-string "%Y-%m-%d")))
 
 #+end_src
+
+#+begin_src emacs-lisp
+
+  (defun run-npm-script ()
+    "Read package.json, list scripts, prompt user to select one, and run it."
+    (interactive)
+    (let* ((package-json (expand-file-name "package.json" default-directory))
+           (json-object-type 'alist)
+           (json (when (file-exists-p package-json)
+                   (with-temp-buffer
+                     (insert-file-contents package-json)
+                     (json-read))))
+           (scripts (alist-get 'scripts json))
+           (script-names (mapcar #'car scripts)))
+      (if scripts
+          (let ((selected-script (completing-read "Run npm script: " script-names)))
+            (compile (format "npm run %s" selected-script)))
+        (message "No scripts found in package.json"))))
+
+#+end_src
 * Commands
 - org-babel-tangle
 
