@@ -705,12 +705,11 @@ https://elpa.gnu.org/packages/rainbow-mode.html
   :config
   (setq elfeed-feeds
     '(("http://rss.cnn.com/rss/cnn_topstories.rs" news)
-      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCFoxNqE6szlu36aM4XGs-SA" youtube)
-      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCwn6xfCxYdajIejf7O-kMIw" youtube)
-      ("https://www.youtube.com/feeds/videos.xml?channel_id=UC_HbtvdzJe4Q69eqWHgltnw" youtube)
-      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCSodZtaofZ94mt8UZp44e5A" youtube)
-      ;; Aidin Robbins
-      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCcOTVI8YJJud1A6aRYrV4sg" youtube))))
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCFoxNqE6szlu36aM4XGs-SA" youtube horoshi_raguli)
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCwn6xfCxYdajIejf7O-kMIw" youtube hannah_ricketts)
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UC_HbtvdzJe4Q69eqWHgltnw" youtube ukrainian_horror)
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCSodZtaofZ94mt8UZp44e5A" youtube glad_and_boujee)
+      ("https://www.youtube.com/feeds/videos.xml?channel_id=UCcOTVI8YJJud1A6aRYrV4sg" youtube aidin_robbins))))
 
 #+end_src
 
@@ -899,7 +898,7 @@ to use language server features
 
 #+end_src
 
-* custom functions
+* Custom Functions
 
 #+begin_src emacs-lisp
 
