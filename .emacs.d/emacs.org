@@ -735,6 +735,7 @@ https://github.com/otavioschwanck/harpoon.el
 ** TODO ERadio
 - [[https://github.com/olavfosse/eradio][GitHub Link]]
 - [[https://youtu.be/P8p3zXSzY4c?si=I1aeYXLUetLnx4Ja][DT Youtube video]]
+** TODO perspective.el
 
 * Structure Templates
 #+begin_src emacs-lisp
