@@ -856,6 +856,14 @@ to use language server features
 (use-package powershell)
 #+end_src
 
+** Pug
+
+#+begin_src emacs-lisp
+
+(use-package pug-mode)
+
+#+end_src
+
 * Company Mode
 
 #+begin_src emacs-lisp
