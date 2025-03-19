@@ -465,11 +465,11 @@ Also in original code from the github there was commented colors for org mode so
 
   (use-package magit
     :commands (magit-status magit-get-current-branch)
-    :config
-    (if (eq system-type 'windows-nt)
-        (progn
-          (setq exec-path (add-to-list 'exec-path "C:/Program Files/Git/bin"))
-          (setenv "PATH" (concat "C:\\Program Files\\Git\\bin;" (getenv "PATH")))))
+    ;; :config
+    ;; (if (eq system-type 'windows-nt)
+    ;;     (progn
+    ;;       (setq exec-path (add-to-list 'exec-path "C:/Program Files/Git/bin"))
+    ;;       (setenv "PATH" (concat "C:\\Program Files\\Git\\bin;" (getenv "PATH")))))
     :custom
     (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
