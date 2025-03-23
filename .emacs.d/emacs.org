@@ -73,15 +73,24 @@ Working alternative for (show-parem-mode)
 
 #+begin_src emacs-lisp
 
-(set-face-attribute 'default nil :font "Iosevka NFM" :height 130) ; set up font
-;; (set-face-attribute 'default nil :font "Cascadia Code" :height 120) ; set up font
+(defun azh/set-font (&optional frame)
+  (when frame
+    (select-frame frame))
+  (set-face-attribute 'default nil :font "Iosevka NFM" :height 130)
+  (set-face-attribute 'fixed-pitch nil :font "Iosevka NFM" :height 130)
+  (set-face-attribute 'variable-pitch nil :font "Arial" :height 130))
 
-;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "Iosevka NFM" :height 130)
-;; (set-face-attribute 'fixed-pitch nil :font "Cascadia Code" :height 120)
+#+end_src
 
-;;Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "Arial" :height 130)
+#+begin_src emacs-lisp
+
+(add-hook 'after-make-frame-functions #'azh/set-font)
+
+#+end_src
+
+#+begin_src emacs-lisp
+
+(azh/set-font)
 
 #+end_src
 
@@ -770,7 +779,7 @@ https://github.com/otavioschwanck/harpoon.el
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . azh/lsp-mode-setup)
     :init (setq lsp-keymap-prefix "C-c l") ;; Or 'C-l', 's-l'
-    :hook ((lsp-enable-which-key-integration t)))
+    :config (lsp-enable-which-key-integration))
 
 #+end_src
 
