@@ -977,3 +977,4 @@ C-x 0 - close window
 ** TODO markdown mode
 ** TODO yaml mode
 ** TODO customize (org-export-backends) probably with M-x (customize-option) or try in configuration file
+** TODO Fundamental Mode for big files???
