@@ -128,6 +128,15 @@ Need to install this package because projectile-ripgrep command needs this packa
   :defer t)
 
 #+end_src
+
+Set ripgrep path for projectile-ripgrep
+#+begin_src emacs-lisp
+
+(add-to-list 'exec-path "C:/Users/Andrii_Zhokh/AppData/Local/Microsoft/WinGet/Packages/BurntSushi.ripgrep.GNU_Microsoft.Winget.Source_8wekyb3d8bbwe/ripgrep-14.1.0-x86_64-pc-windows-gnu")
+(setenv "PATH" (concat "C:/Users/Andrii_Zhokh/AppData/Local/Microsoft/WinGet/Packages/BurntSushi.ripgrep.GNU_Microsoft.Winget.Source_8wekyb3d8bbwe/ripgrep-14.1.0-x86_64-pc-windows-gnu;" (getenv "PATH")))
+
+#+end_src
+
 ** TODO consult / embark / wgrep
 https://github.com/minad/consult
 https://github.com/oantolin/embark
