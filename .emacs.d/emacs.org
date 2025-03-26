@@ -279,12 +279,12 @@ Reset catppuccin theme heading font weight
 
 #+begin_src emacs-lisp
 
-  ;; (use-package catppuccin-theme
-  ;;   :config
-  ;;   (load-theme 'catppuccin t)
-  ;;   (azh/set-org-level-weight)
-  ;;   (azh/catppuccin-headers-hight-config)
-  ;;   (azh/catppuccin-set-frappe))
+  (use-package catppuccin-theme
+    :config
+    (load-theme 'catppuccin t)
+    (azh/set-org-level-weight)
+    (azh/catppuccin-headers-hight-config)
+    (azh/catppuccin-set-frappe))
 
 #+end_src
 
@@ -307,7 +307,8 @@ Reset catppuccin theme heading font weight
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t)
-    (load-theme 'doom-nord t))
+    (load-theme 'catppuccin t))
+    ;; (load-theme 'doom-nord t))
 
 #+end_src
 
