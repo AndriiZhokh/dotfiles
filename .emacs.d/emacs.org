@@ -94,6 +94,17 @@ Working alternative for (show-parem-mode)
 
 #+end_src
 
+* Git Unix Utilities
+Add Git's Unix Utilities directory to Emacs' path
+
+#+begin_src emacs-lisp
+
+(when (string-equal system-type "windows-nt")
+  (add-to-list 'exec-path "C:/Program Files/Git/usr/bin")
+  (add-to-list 'exec-path "C:/Program Files/Git/bin"))
+
+#+end_src
+
 * Initialize package sources
 
 #+begin_src emacs-lisp
@@ -458,8 +469,14 @@ Also in original code from the github there was commented colors for org mode so
 
   (use-package projectile
     :diminish projectile-mode
-    :config (projectile-mode)
-    :custom ((projectile-completion-system 'ivy))
+    :config
+    (setq projectile-indexing-method 'alien)
+    (setq projectile-enable-caching t)
+    (setq projectile-find-file-preserves-cache t)
+    (setq projectile-generic-command "rg --files --hidden --follow --glob '!.git/*' --glob '!node_modules/*'")
+    (projectile-mode)
+    :custom
+    ((projectile-completion-system 'ivy))
     :bind-keymap
     ("C-c p" . projectile-command-map)
     :init
