@@ -76,9 +76,9 @@ Working alternative for (show-parem-mode)
 (defun azh/set-font (&optional frame)
   (when frame
     (select-frame frame))
-  (set-face-attribute 'default nil :font "Iosevka NFM" :height 130)
-  (set-face-attribute 'fixed-pitch nil :font "Iosevka NFM" :height 130)
-  (set-face-attribute 'variable-pitch nil :font "Arial" :height 130))
+  (set-face-attribute 'default nil :font "VictorMono NFM" :height 120)
+  (set-face-attribute 'fixed-pitch nil :font "VictorMOno NFM" :height 120)
+  (set-face-attribute 'variable-pitch nil :font "Arial" :height 120))
 
 #+end_src
 
@@ -470,7 +470,7 @@ Also in original code from the github there was commented colors for org mode so
   (use-package projectile
     :diminish projectile-mode
     :config
-    (setq projectile-indexing-method 'alien)
+    (setq projectile-indexing-method 'hybrid)
     ;; (setq projectile-enable-caching t)
     ;; (setq projectile-find-file-preserves-cache t)
     (setq projectile-generic-command "rg --files --hidden --follow --glob '!.git/*' --glob '!node_modules/*'")
