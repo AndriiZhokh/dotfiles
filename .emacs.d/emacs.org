@@ -749,6 +749,34 @@ https://elpa.gnu.org/packages/rainbow-mode.html
 
 #+end_src
 
+** Pulsar
+TODO: optimize for evil-delete evil-delete-char and evil-change
+
+#+begin_src emacs-lisp
+
+(use-package pulsar
+  :ensure t
+  :config
+  (setq pulsar-delay 0.055)
+  (setq pulsar-face 'pulsar-yellow)
+
+  (defun azh/pulse-after-evil-op (beg end &rest _args)
+    (let ((deactivate-mark nil))
+      (set-mark beg)
+      (goto-char end)
+      (pulsar-pulse-region)
+      (goto-char beg)))
+
+  (advice-remove 'evil-yank #'azh/pulse-after-evil-op)
+  (advice-remove 'evil-delete #'azh/pulse-after-evil-op)
+  (advice-remove 'evil-delete-char #'azh/pulse-after-evil-op)
+  (advice-remove 'evil-change #'azh/pulse-after-evil-op)
+
+  (advice-add 'evil-yank :after #'azh/pulse-after-evil-op)
+  (advice-add 'evil-delete :after #'azh/pulse-after-evil-op)
+  (pulsar-global-mode 1))
+
+#+end_src
 ** TODO smartparens
 - doesn't work in scratch buffer
 
