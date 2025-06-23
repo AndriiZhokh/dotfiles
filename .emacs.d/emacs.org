@@ -290,12 +290,12 @@ Reset catppuccin theme heading font weight
 
 #+begin_src emacs-lisp
 
-  (use-package catppuccin-theme)
-    ;; :config
-    ;; (load-theme 'catppuccin t)
-    ;; (azh/set-org-level-weight)
-    ;; (azh/catppuccin-headers-hight-config)
-    ;; (azh/catppuccin-set-frappe))
+  (use-package catppuccin-theme
+    :config
+    (load-theme 'catppuccin t)
+    (azh/set-org-level-weight)
+    (azh/catppuccin-headers-hight-config)
+    (azh/catppuccin-set-frappe))
 
 #+end_src
 
@@ -303,14 +303,13 @@ Reset catppuccin theme heading font weight
 
 #+begin_src emacs-lisp
 
-(use-package kanagawa-themes
-  :config
-  (load-theme 'kanagawa-wave t))
+(use-package kanagawa-themes)
+  ;; :config
+  ;; (load-theme 'kanagawa-wave t))
 
 #+end_src
 
-** Doom Themes
-
+** Everforest Theme
 #+begin_src emacs-lisp
 
 (setq everforest-path
@@ -318,23 +317,24 @@ Reset catppuccin theme heading font weight
 
 (add-to-list 'custom-theme-load-path everforest-path)
 
-#+end_src
-
-#+begin_src emacs-lisp
-
-  (use-package doom-themes
-    :init
-    ;; (load-theme 'everforest-hard-dark t)
-    :config
-    (setq doom-themes-enable-bold t
-          doom-themes-enable-italic t))
-    ;; (load-theme 'doom-nord t))
-    ;; (load-theme 'catppuccin t))
+;; (load-theme 'everforest-hard-dark t)
 
 #+end_src
 
 *** Currently everforest theme is not perfect, still has some not usefull coloring related selection files and folders in dired-mode
 Also in original code from the github there was commented colors for org mode source blocks and I have fixed that and now to use everforest theme I need to copy folder from dotfiles to config folder .emacs.d
+** Doom Themes
+
+#+begin_src emacs-lisp
+
+  (use-package doom-themes
+    :init
+    :config
+    (setq doom-themes-enable-bold t
+          doom-themes-enable-italic t))
+
+#+end_src
+
 ** Rainbow Delimiters
 
 #+begin_src emacs-lisp
