@@ -752,6 +752,7 @@ https://elpa.gnu.org/packages/rainbow-mode.html
   :config
   (setq elfeed-feeds
     '(("http://rss.cnn.com/rss/cnn_topstories.rs" news)
+      ("https://grnt.media/feed/atom/" news ґрунт)
       ("https://www.youtube.com/feeds/videos.xml?channel_id=UCFoxNqE6szlu36aM4XGs-SA" youtube horoshi_raguli)
       ("https://www.youtube.com/feeds/videos.xml?channel_id=UCwn6xfCxYdajIejf7O-kMIw" youtube hannah_ricketts)
       ("https://www.youtube.com/feeds/videos.xml?channel_id=UC_HbtvdzJe4Q69eqWHgltnw" youtube ukrainian_horror)
@@ -811,7 +812,9 @@ https://github.com/otavioschwanck/harpoon.el
 - [[https://github.com/olavfosse/eradio][GitHub Link]]
 - [[https://youtu.be/P8p3zXSzY4c?si=I1aeYXLUetLnx4Ja][DT Youtube video]]
 ** TODO perspective.el
-
+** alert-toast
+Package to send notifications on windows systems
+alternative could be built-in function `w32-notification-notify` which sends "old school" looking notifications on Windows
 * Structure Templates
 #+begin_src emacs-lisp
 
