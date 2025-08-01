@@ -2,6 +2,8 @@
 #+TITLE: Emacs From Scratch Configuration
 #+STARTUP: show2levels
 
+* Useful Links
+- [[https://github.com/MiniApollo/kickstart.emacs][kickstart.emacs]]
 * Basic UI Configuration
 
 #+begin_src emacs-lisp
