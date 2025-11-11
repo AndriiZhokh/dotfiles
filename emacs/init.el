@@ -1,20 +1,20 @@
-(scroll-bar-mode -1)                                       ; hide scroll bar
-(tool-bar-mode -1)                                         ; hide tool bar
-(tooltip-mode -1)                                          ; disable tooltips
-(electric-pair-mode 1)                                     ; auto close brackets
-(menu-bar-mode -1)                                         ; hide menu bar
-(global-hl-line-mode 1)                                    ; highlight current line
-(column-number-mode)                                       ; display column number in modeline
-(global-display-line-numbers-mode 1)                       ; display line numbers
-(set-fringe-mode 10)                                       ; vertical margins
-(setq display-line-numbers-type 'relative)                 ; display relative line numbers
-(setq inhibit-startup-message t)                           ; do not show default startup screen
-(setq visible-bell t)                                      ; set up visible bell
+(scroll-bar-mode -1)                                           ; hide scroll bar
+(tool-bar-mode -1)                                             ; hide tool bar
+(tooltip-mode -1)                                              ; disable tooltips
+(electric-pair-mode 1)                                         ; auto close brackets
+(menu-bar-mode -1)                                             ; hide menu bar
+(global-hl-line-mode 1)                                        ; highlight current line
+(column-number-mode)                                           ; display column number in modeline
+(global-display-line-numbers-mode 1)                           ; display line numbers
+(set-fringe-mode 10)                                           ; vertical margins
+(setq display-line-numbers-type 'relative)                     ; display relative line numbers
+(setq inhibit-startup-message t)                               ; do not show default startup screen
+(setq visible-bell t)                                          ; set up visible bell
 
-(put 'dired-find-alternate-file 'disabled nil)             ; navigate in dired with 'a' wihtout opening new buffers
+(put 'dired-find-alternate-file 'disabled nil)                 ; navigate in dired with 'a' wihtout opening new buffers
 
 (setq backup-directory-alist
-      `(("." . ,(concat user-emacs-directory "backups")))) ; set back up directory to backup files
+      `(("." . ,(concat user-emacs-directory "backups"))))     ; set back up directory to backup files
 
 ;; disable line numbers for specific modes
 (dolist (mode '(org-mode-hook
@@ -22,7 +22,11 @@
                 shell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-(set-face-attribute 'default nil :height 220)              ; set up font
+(set-face-attribute 'default nil :font "Iosevka NFM" :height 240)                  ; set up font
+
+(add-to-list 'custom-theme-load-path "~/.config/emacs/themes") ; add custom theme directory
+
+(load-theme 'compline t)                                       ; load the theme
 
 ;; START setup elpaca package manager
 (defvar elpaca-installer-version 0.11)

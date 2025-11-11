@@ -1,0 +1,254 @@
+;;; compline-theme.el --- A warm, muted color scheme for Emacs -*- lexical-binding: t; -*-
+;;
+;; Author: joshuablais <https://github.com/jblais493>
+;; Version: 1.0
+;; Package-Requires: ((emacs "24.1"))
+;;
+;;; Commentary:
+;; A warm, low-contrast theme with muted colors designed for extended reading.
+;; Based on the original Doom Emacs compline theme.
+;;
+;;; Code:
+
+(deftheme compline
+  "A warm, muted color scheme with low contrast.")
+
+(let ((class '((class color) (min-colors 89)))
+      ;; Color palette
+      (bg         "#1a1d21")
+      (bg-alt     "#22262b")
+      (base0      "#0f1114")
+      (base1      "#171a1e")
+      (base2      "#1f2228")
+      (base3      "#282c34")
+      (base4      "#3d424a")
+      (base5      "#515761")
+      (base6      "#676d77")
+      (base7      "#8b919a")
+      (base8      "#e0dcd4")
+      (fg         "#f0efeb")
+      (fg-alt     "#ccc4b4")
+      
+      ;; Semantic colors
+      (grey       "#3d424a")
+      (red        "#CDACAC")
+      (orange     "#ccc4b4")
+      (green      "#b8c4b8")
+      (blue       "#b4bcc4")
+      (yellow     "#d4ccb4")
+      (teal       "#b4c4bc")
+      (dark-blue  "#9ca4ac")
+      (cyan       "#b4c0c8")
+      (dark-cyan  "#98a4ac")
+      
+      ;; UI colors
+      (highlight      "#d4ccb4")
+      (selection      "#3d424a")
+      (vertical-bar   "#14161a")
+      (modeline-bg    "#171a1e")
+      (modeline-fg    "#8b919a")
+      (modeline-inactive-bg "#12151a")
+      (modeline-inactive-fg "#515761"))
+
+  (custom-theme-set-faces
+   'compline
+
+   ;; Base faces
+   `(default ((,class (:foreground ,fg :background ,bg))))
+   `(cursor ((,class (:background ,fg))))
+   `(region ((,class (:background ,selection :extend t))))
+   `(highlight ((,class (:background ,base4))))
+   `(hl-line ((,class (:background ,bg-alt :extend t))))
+   `(fringe ((,class (:background ,bg :foreground ,base4))))
+   `(vertical-border ((,class (:foreground ,vertical-bar))))
+   `(link ((,class (:foreground ,cyan :underline t))))
+   `(shadow ((,class (:foreground ,base5))))
+   `(error ((,class (:foreground ,red :weight bold))))
+   `(warning ((,class (:foreground ,yellow :weight bold))))
+   `(success ((,class (:foreground ,green :weight bold))))
+
+   ;; Font lock
+   `(font-lock-builtin-face ((,class (:foreground ,cyan))))
+   `(font-lock-comment-face ((,class (:foreground ,base4 :background ,(concat bg "80")))))
+   `(font-lock-comment-delimiter-face ((,class (:foreground ,base4))))
+   `(font-lock-constant-face ((,class (:foreground ,base7))))
+   `(font-lock-doc-face ((,class (:foreground ,base4))))
+   `(font-lock-function-name-face ((,class (:foreground ,cyan))))
+   `(font-lock-keyword-face ((,class (:foreground ,base8 :weight normal))))
+   `(font-lock-string-face ((,class (:foreground ,green))))
+   `(font-lock-type-face ((,class (:foreground ,blue))))
+   `(font-lock-variable-name-face ((,class (:foreground ,base8))))
+   `(font-lock-warning-face ((,class (:foreground ,yellow))))
+   `(font-lock-negation-char-face ((,class (:foreground ,red))))
+   `(font-lock-preprocessor-face ((,class (:foreground ,cyan))))
+   `(font-lock-regexp-grouping-backslash ((,class (:foreground ,yellow))))
+   `(font-lock-regexp-grouping-construct ((,class (:foreground ,yellow))))
+
+   ;; Line numbers
+   `(line-number ((,class (:foreground ,base4 :background ,bg))))
+   `(line-number-current-line ((,class (:foreground ,fg :background ,bg))))
+
+   ;; Mode line
+   `(mode-line ((,class (:background ,modeline-bg :foreground ,modeline-fg :box (:line-width 4 :color ,modeline-bg)))))
+   `(mode-line-inactive ((,class (:background ,modeline-inactive-bg :foreground ,modeline-inactive-fg :box (:line-width 4 :color ,modeline-inactive-bg)))))
+   `(mode-line-emphasis ((,class (:foreground ,base8 :weight bold))))
+   `(mode-line-buffer-id ((,class (:foreground ,fg :weight bold))))
+
+   ;; Minibuffer
+   `(minibuffer-prompt ((,class (:foreground ,cyan :weight bold))))
+
+   ;; Search
+   `(isearch ((,class (:background ,yellow :foreground ,bg :weight bold))))
+   `(isearch-fail ((,class (:background ,red :foreground ,bg))))
+   `(lazy-highlight ((,class (:background ,base4 :foreground ,fg))))
+
+   ;; Completion
+   `(completions-common-part ((,class (:foreground ,cyan))))
+   `(completions-first-difference ((,class (:foreground ,yellow :weight bold))))
+
+   ;; Dired
+   `(dired-directory ((,class (:foreground ,cyan :weight bold))))
+   `(dired-flagged ((,class (:foreground ,red))))
+   `(dired-header ((,class (:foreground ,blue :weight bold))))
+   `(dired-mark ((,class (:foreground ,yellow))))
+   `(dired-marked ((,class (:foreground ,yellow :weight bold))))
+   `(dired-symlink ((,class (:foreground ,teal))))
+
+   ;; Show-paren
+   `(show-paren-match ((,class (:background ,base4 :foreground ,cyan :weight bold))))
+   `(show-paren-mismatch ((,class (:background ,red :foreground ,bg :weight bold))))
+
+   ;; Org mode
+   `(org-document-title ((,class (:foreground ,fg :weight ultra-bold :height 1.3))))
+   `(org-level-1 ((,class (:foreground ,fg :weight ultra-bold :height 1.2))))
+   `(org-level-2 ((,class (:foreground ,cyan :weight bold :height 1.1))))
+   `(org-level-3 ((,class (:foreground ,blue :weight bold))))
+   `(org-level-4 ((,class (:foreground ,blue))))
+   `(org-level-5 ((,class (:foreground ,base7))))
+   `(org-level-6 ((,class (:foreground ,base7))))
+   `(org-level-7 ((,class (:foreground ,base7))))
+   `(org-level-8 ((,class (:foreground ,fg))))
+   `(org-block ((,class (:background ,base1 :extend t))))
+   `(org-block-begin-line ((,class (:foreground ,base4 :slant italic :background ,base0 :extend t))))
+   `(org-block-end-line ((,class (:foreground ,base4 :slant italic :background ,base0 :extend t))))
+   `(org-code ((,class (:foreground ,cyan :background ,base1))))
+   `(org-verbatim ((,class (:foreground ,green))))
+   `(org-quote ((,class (:background ,base1 :extend t))))
+   `(org-meta-line ((,class (:foreground ,base4))))
+   `(org-document-info-keyword ((,class (:foreground ,base4))))
+   `(org-link ((,class (:foreground ,cyan :underline t))))
+   `(org-todo ((,class (:foreground ,red :weight bold))))
+   `(org-done ((,class (:foreground ,green :weight bold))))
+   `(org-date ((,class (:foreground ,blue))))
+   `(org-special-keyword ((,class (:foreground ,base5))))
+   `(org-ellipsis ((,class (:foreground ,red :background ,bg))))
+   `(org-hide ((,class (:foreground ,bg))))
+
+   ;; Markdown
+   `(markdown-header-face-1 ((,class (:foreground ,red :weight ultra-bold :height 1.3))))
+   `(markdown-header-face-2 ((,class (:foreground ,red :weight bold :height 1.2))))
+   `(markdown-header-face-3 ((,class (:foreground ,red :weight bold :height 1.1))))
+   `(markdown-header-face-4 ((,class (:foreground ,red :weight bold))))
+   `(markdown-markup-face ((,class (:foreground ,base5))))
+   `(markdown-code-face ((,class (:background ,base0 :extend t))))
+   `(markdown-inline-code-face ((,class (:foreground ,cyan :background ,base1))))
+   `(markdown-link-face ((,class (:foreground ,cyan))))
+   `(markdown-url-face ((,class (:foreground ,blue :underline t))))
+
+   ;; CSS
+   `(css-selector ((,class (:foreground ,red))))
+   `(css-property ((,class (:foreground ,fg))))
+   `(css-proprietary-property ((,class (:foreground ,orange))))
+
+   ;; Diff
+   `(diff-added ((,class (:foreground ,green :background ,(concat green "20")))))
+   `(diff-removed ((,class (:foreground ,red :background ,(concat red "20")))))
+   `(diff-changed ((,class (:foreground ,yellow :background ,(concat yellow "20")))))
+   `(diff-header ((,class (:foreground ,cyan :weight bold))))
+   `(diff-file-header ((,class (:foreground ,blue :weight bold))))
+   `(diff-refine-added ((,class (:background ,green :foreground ,bg))))
+   `(diff-refine-removed ((,class (:background ,red :foreground ,bg))))
+
+   ;; Magit (if installed)
+   `(magit-section-heading ((,class (:foreground ,cyan :weight bold))))
+   `(magit-section-highlight ((,class (:background ,bg-alt))))
+   `(magit-branch-local ((,class (:foreground ,blue))))
+   `(magit-branch-remote ((,class (:foreground ,green))))
+   `(magit-diff-added ((,class (:foreground ,green :background ,(concat green "15")))))
+   `(magit-diff-removed ((,class (:foreground ,red :background ,(concat red "15")))))
+   `(magit-diff-context-highlight ((,class (:background ,bg-alt))))
+   `(magit-hash ((,class (:foreground ,base7))))
+
+   ;; Company (if installed)
+   `(company-tooltip ((,class (:background ,bg-alt :foreground ,fg))))
+   `(company-tooltip-selection ((,class (:background ,selection))))
+   `(company-tooltip-common ((,class (:foreground ,cyan :weight bold))))
+   `(company-tooltip-annotation ((,class (:foreground ,base5))))
+   `(company-scrollbar-bg ((,class (:background ,base3))))
+   `(company-scrollbar-fg ((,class (:background ,base5))))
+
+   ;; Vertico/Orderless
+   `(vertico-current ((,class (:background ,selection :extend t))))
+   `(orderless-match-face-0 ((,class (:foreground ,cyan :weight bold))))
+   `(orderless-match-face-1 ((,class (:foreground ,blue :weight bold))))
+   `(orderless-match-face-2 ((,class (:foreground ,green :weight bold))))
+   `(orderless-match-face-3 ((,class (:foreground ,yellow :weight bold))))
+
+   ;; Marginalia
+   `(marginalia-documentation ((,class (:foreground ,base5))))
+   `(marginalia-file-name ((,class (:foreground ,fg))))
+   `(marginalia-key ((,class (:foreground ,cyan))))
+
+   ;; Which-key
+   `(which-key-command-description-face ((,class (:foreground ,fg))))
+   `(which-key-key-face ((,class (:foreground ,cyan :weight bold))))
+   `(which-key-group-description-face ((,class (:foreground ,blue))))
+
+   ;; Flycheck
+   `(flycheck-error ((,class (:underline (:style wave :color ,red)))))
+   `(flycheck-warning ((,class (:underline (:style wave :color ,yellow)))))
+   `(flycheck-info ((,class (:underline (:style wave :color ,cyan)))))
+
+   ;; Ivy (if used)
+   `(ivy-current-match ((,class (:background ,selection :extend t))))
+   `(ivy-minibuffer-match-face-1 ((,class (:foreground ,base7))))
+   `(ivy-minibuffer-match-face-2 ((,class (:foreground ,cyan :weight bold))))
+   `(ivy-minibuffer-match-face-3 ((,class (:foreground ,blue :weight bold))))
+   `(ivy-minibuffer-match-face-4 ((,class (:foreground ,green :weight bold))))
+
+   ;; Rainbow delimiters (if installed)
+   `(rainbow-delimiters-depth-1-face ((,class (:foreground ,cyan))))
+   `(rainbow-delimiters-depth-2-face ((,class (:foreground ,blue))))
+   `(rainbow-delimiters-depth-3-face ((,class (:foreground ,green))))
+   `(rainbow-delimiters-depth-4-face ((,class (:foreground ,yellow))))
+   `(rainbow-delimiters-depth-5-face ((,class (:foreground ,teal))))
+   `(rainbow-delimiters-depth-6-face ((,class (:foreground ,dark-cyan))))
+   `(rainbow-delimiters-depth-7-face ((,class (:foreground ,base7))))
+   `(rainbow-delimiters-unmatched-face ((,class (:foreground ,red :weight bold))))
+
+   ;; Treemacs (if installed)
+   `(treemacs-root-face ((,class (:foreground ,cyan :weight bold :height 1.2))))
+   `(treemacs-directory-face ((,class (:foreground ,fg))))
+   `(treemacs-file-face ((,class (:foreground ,fg))))
+   `(treemacs-git-modified-face ((,class (:foreground ,orange))))
+   `(treemacs-git-added-face ((,class (:foreground ,green))))
+   `(treemacs-git-untracked-face ((,class (:foreground ,base5))))
+
+   ;; Vterm
+   `(vterm-color-black ((,class (:foreground ,base0 :background ,base0))))
+   `(vterm-color-red ((,class (:foreground ,red :background ,red))))
+   `(vterm-color-green ((,class (:foreground ,green :background ,green))))
+   `(vterm-color-yellow ((,class (:foreground ,yellow :background ,yellow))))
+   `(vterm-color-blue ((,class (:foreground ,blue :background ,blue))))
+   `(vterm-color-magenta ((,class (:foreground ,base7 :background ,base7))))
+   `(vterm-color-cyan ((,class (:foreground ,cyan :background ,cyan))))
+   `(vterm-color-white ((,class (:foreground ,fg :background ,fg))))))
+
+;;;###autoload
+(when load-file-name
+  (add-to-list 'custom-theme-load-path
+               (file-name-as-directory (file-name-directory load-file-name))))
+
+(provide-theme 'compline)
+
+;;; compline-theme.el ends here
