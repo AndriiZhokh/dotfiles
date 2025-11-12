@@ -8,25 +8,27 @@
 
 #+begin_src emacs-lisp
 
-  (scroll-bar-mode -1)                                       ; hide scroll bar
-  (tool-bar-mode -1)                                         ; hide tool bar
-  (tooltip-mode -1)                                          ; disable tooltips
-  (electric-pair-mode 1)                                     ; auto close brackets
-  (menu-bar-mode -1)                                         ; hide menu bar
-  (global-hl-line-mode 1)                                    ; highlight current line
-  (column-number-mode)                                       ; display column number in modeline
-  (global-display-line-numbers-mode 1)                       ; display line numbers
-  (set-fringe-mode 10)                                       ; vertical margins
-  (setq-default tab-width 2)                                 ; setting default tab width
-  (setq-default indent-tabs-mode nil)
+(scroll-bar-mode -1)                                       ; hide scroll bar
+(tool-bar-mode -1)                                         ; hide tool bar
+(tooltip-mode -1)                                          ; disable tooltips
+(electric-pair-mode 1)                                     ; auto close brackets
+(menu-bar-mode -1)                                         ; hide menu bar
+(global-hl-line-mode 1)                                    ; highlight current line
+(column-number-mode)                                       ; display column number in modeline
+(global-display-line-numbers-mode 1)                       ; display line numbers
+(set-fringe-mode 10)                                       ; vertical margins
+(setq-default tab-width 2)                                 ; setting default tab width
+(setq-default indent-tabs-mode nil)
 
-  (setq display-line-numbers-type 'relative)                 ; display relative line numbers
-  (setq inhibit-startup-message t)                           ; do not show default startup screen
-  (setq visible-bell t)                                      ; set up visible bell
-  (setq backup-directory-alist
-        `(("." . ,(concat user-emacs-directory "backups")))) ; set back up directory to backup files
+(setq display-line-numbers-type 'relative)                 ; display relative line numbers
+(setq inhibit-startup-message t)                           ; do not show default startup screen
+(setq visible-bell t)                                      ; set up visible bell
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups")))) ; set back up directory to backup files
 
-  (put 'dired-find-alternate-file 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")  ; add custom theme directory
 
 #+end_src
 
@@ -78,9 +80,17 @@ Working alternative for (show-parem-mode)
 (defun azh/set-font (&optional frame)
   (when frame
     (select-frame frame))
-  (set-face-attribute 'default nil :font "Iosevka NFM" :height 120)
-  (set-face-attribute 'fixed-pitch nil :font "Iosevka NFM" :height 120)
-  (set-face-attribute 'variable-pitch nil :font "Arial" :height 120))
+  (set-face-attribute 'default nil
+                      :font "VictorMono NFM"
+                      :height 110
+                      :weight 'semi-bold)
+  (set-face-attribute 'fixed-pitch nil
+                      :font "VictorMono NFM"
+                      :height 110
+                      :weight 'semi-bold)
+  (set-face-attribute 'variable-pitch nil
+                      :font "Arial"
+                      :height 110))
 
 #+end_src
 
@@ -245,6 +255,7 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 
   (use-package doom-themes
     :init
+    ;; (load-theme 'doom-nord-aurora t)
     :config
     (setq doom-themes-enable-bold t
           doom-themes-enable-italic t))
@@ -255,7 +266,7 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 
 #+begin_src emacs-lisp
 
-(load-theme 'everforest-hard-dark t)
+;; (load-theme 'everforest-hard-dark t)
 ;; (load-theme 'everforest-hard-light t)
 
 #+end_src
@@ -264,6 +275,13 @@ also need to run `nerd-icons-install-fonts` commands after fresh installation, a
 Also in original code from the github there was commented colors for org mode source blocks and I have fixed that
 
 To use everforest theme I need to copy files `everforest-hard-dark-theme.el` and `everforest-hard-light-theme.el` into the root of config folder `.emacs.d`
+** Compline Theme
+#+begin_src emacs-lisp
+
+(load-theme 'compline t)                                       ; load the theme
+
+#+end_src
+
 ** Rainbow Delimiters
 
 #+begin_src emacs-lisp

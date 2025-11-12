@@ -391,7 +391,7 @@ require('lazy').setup({
     end,
     config = function()
       vim.opt.background = 'dark'
-      vim.cmd.colorscheme 'everforest'
+      -- vim.cmd.colorscheme 'quiet'
 
       vim.api.nvim_set_hl(0, 'Folded', {
         bg = '#282828',
@@ -400,9 +400,9 @@ require('lazy').setup({
       })
     end,
 
-    -- init = function()
-    --   vim.cmd.colorscheme 'everforest'
-    -- end,
+    init = function()
+      vim.cmd.colorscheme 'everforest'
+    end,
   },
 
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
