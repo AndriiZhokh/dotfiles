@@ -129,3 +129,32 @@
   (setq dirvish-mode-line-format
 	'(:left (sort symlink) :right (omit yank index)))
   (setq dirvish-cache-dir (expand-file-name "dirvish/" user-emacs-directory)))
+
+(use-package pulsar
+  :ensure t
+  :config
+  (setq pulsar-delay 0.055)
+  (setq pulsar-face 'pulsar-green)
+  (setq pulsar-pulse-functions
+        '(recenter-top-bottom
+          move-to-window-line-top-bottom
+          reposition-window
+          forward-page
+          backward-page
+          scroll-up-command
+          scroll-down-command
+          windmove-right
+          windmove-left
+          windmove-up
+          windmove-down
+          yank
+          yank-pop
+	  evil-yank
+	  evil-paste-after
+	  evil-paste-before
+	  evil-delete
+	  evil-delete-line
+          delete-other-windows
+          delete-window))
+
+  (pulsar-global-mode 1))
