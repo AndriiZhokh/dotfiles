@@ -11,6 +11,10 @@
 (setq inhibit-startup-message t)                               ; do not show default startup screen
 (setq visible-bell t)                                          ; set up visible bell
 
+;; hide border around the emacs frame
+;; (set-frame-parameter nil 'undecorated t)
+;; (add-to-list 'default-frame-alist '(undecorated . t))
+
 (put 'dired-find-alternate-file 'disabled nil)                 ; navigate in dired with 'a' wihtout opening new buffers
 
 (setq backup-directory-alist
@@ -116,4 +120,12 @@
   (global-corfu-mode))
 
 (use-package dirvish
-  :ensure t)
+  :ensure t
+  :init
+  (dirvish-override-dired-mode)
+  :config
+  (setq dirvish-attributes
+	'(hl-line git-msg file-size collapse subtree-state))
+  (setq dirvish-mode-line-format
+	'(:left (sort symlink) :right (omit yank index)))
+  (setq dirvish-cache-dir (expand-file-name "dirvish/" user-emacs-directory)))
