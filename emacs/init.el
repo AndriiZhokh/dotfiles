@@ -158,3 +158,46 @@
           delete-window))
 
   (pulsar-global-mode 1))
+
+(use-package transient
+  :ensure t)
+
+(use-package magit
+  :ensure t
+  :after transient
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package projectile
+  :diminish projectile-mode
+  :config
+  (setq projectile-indexing-method 'hybrid)
+  (setq projectile-enable-caching 'persistent)
+  (setq projectile-find-file-preserves-cache t)
+  (setq projectile-generic-command "rg --files --hidden --follow --glob '!.git/*' --glob '!node_modules/*'")
+  (projectile-mode)
+  :custom
+  ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/Projects/Code")
+    (setq projectile-project-search-path '("~/Projects/Code")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+;; Helper functions
+(defun az/display-info ()
+  "Display screen resolution and scaling information."
+  (interactive)
+  (message "Resolution: %dx%d | DPI: %.1f | Scaling: %s"
+	   (display-pixel-width)
+	   (display-pixel-height)
+	   (/ (display-pixel-width) (/ (display-pixel-height) 25.4))
+	   (or (frame-parameter nil 'display-scaling-factor) "N/A")))
+
+(defun az/convert-to-unix-line-endings ()
+  "Convert current buffer to Unix line endings (LF)."
+  (interactive)
+  (set-buffer-file-coding-system 'unix)
+  (save-buffer))
