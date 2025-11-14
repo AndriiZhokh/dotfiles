@@ -1,3 +1,7 @@
 nvim/lazy-lock.json
 emacs/eln-cache
 emacs/elpaca
+emacs/auto-save-list
+emacs/backups
+emacs/transient
+
