@@ -217,7 +217,11 @@
   (save-buffer))
 #+end_src
 
-
-
 * TODO ORG MODERN
 - [[https://github.com/minad/org-modern][[github] org-modern]]
+
+#+begin_src emacs-lisp
+(use-package org-modern
+  :config
+  (with-eval-after-load 'org (global-org-modern-mode)))
+#+end_src
