@@ -1,4 +1,4 @@
-#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.config/emacs/init.el :mkdirp yes
 #+TITLE: Emacs From Scratch Configuration
 #+STARTUP: show2levels
 

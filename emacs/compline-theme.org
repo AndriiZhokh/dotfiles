@@ -1,5 +1,5 @@
 #+TITLE: Compline theme configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/themes/compline-theme.el :mkdirp yes
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.config/emacs/themes/compline-theme.el :mkdirp yes
 #+STARTUP: show2levels
 
 * THEME
