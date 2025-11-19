@@ -1,15 +1,21 @@
-;;; compline-theme.el --- A warm, muted color scheme for Emacs -*- lexical-binding: t; -*-
-;;
-;; Author: joshuablais <https://github.com/jblais493>
-;; Version: 1.0
-;; Package-Requires: ((emacs "24.1"))
-;;
-;;; Commentary:
-;; A warm, low-contrast theme with muted colors designed for extended reading.
-;; Based on the original Doom Emacs compline theme.
-;;
-;;; Code:
+#+TITLE: Compline theme configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/themes/compline-theme.el :mkdirp yes
+#+STARTUP: show2levels
 
+* THEME
+compline-theme.el --- A warm, muted color scheme for Emacs -*- lexical-binding: t; -*-
+
+Author: joshuablais <https://github.com/jblais493>
+Version: 1.0
+Package-Requires: ((emacs "24.1"))
+
+Commentary:
+A warm, low-contrast theme with muted colors designed for extended reading.
+Based on the original Doom Emacs compline theme.
+
+ Code:
+
+#+begin_src emacs-lisp
 (deftheme compline
   "A warm, muted color scheme with low contrast.")
 
@@ -252,3 +258,4 @@
 (provide-theme 'compline)
 
 ;;; compline-theme.el ends here
+#+end_src
