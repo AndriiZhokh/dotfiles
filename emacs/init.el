@@ -26,7 +26,15 @@
                 shell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-(set-face-attribute 'default nil :font "Iosevka NFM" :height 240)                  ; set up font
+(pcase (cons (system-name) system-type)
+  (`("EPUALVIW092F" . gnu/linux)
+   (set-face-attribute 'default nil :font "Iosevka NFM" :height 160))
+
+  (`(,_ . windows-nt)
+   (set-face-attribute 'default nil :font "Iosevka NFM" :height 110))
+
+  (_
+   (set-face-attribute 'default nil :font "Iosevka NFM" :height 240)))
 
 (add-to-list 'custom-theme-load-path "~/.config/emacs/themes") ; add custom theme directory
 
@@ -73,6 +81,9 @@
 (elpaca `(,@elpaca-order))
 
 (setq package-enable-at-startup nil)                       ; disable default package manager package.el
+
+(when (eq system-type 'windows-nt)
+  (elpaca-no-symlink-mode))
 
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))                               ; install and enable use-package for elpaca
