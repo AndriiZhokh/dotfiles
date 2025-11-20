@@ -398,25 +398,29 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 
 #+end_src
 
-* TODO ORG MODERN
+* ORG MODERN 
 - [[https://github.com/minad/org-modern][[github] org-modern]]
 
 #+begin_src emacs-lisp
-  (use-package org-modern
-    :after org
-    :config
-    (setq
-     ;; Edit settings
-     org-auto-align-tags nil
-     org-tags-column 0
-     org-catch-invisible-edits 'show-and-error
-     org-special-ctrl-a/e t
-     org-insert-heading-respect-content t
-     
-     ;; Org styling, hide markup etc.
-     org-hide-emphasis-markers t
-     org-pretty-entities t
-     org-agenda-tags-column 0
-     org-ellipsis "…")
-    (with-eval-after-load 'org (global-org-modern-mode)))
+(use-package org-modern
+  :after org
+  :config
+  (setq
+   ;; Edit settings
+   org-auto-align-tags nil
+   org-tags-column 0
+   org-catch-invisible-edits 'show-and-error
+   org-special-ctrl-a/e t
+   org-insert-heading-respect-content t
+   
+   ;; Org styling, hide markup etc.
+   org-hide-emphasis-markers t
+   org-pretty-entities t
+   org-agenda-tags-column 0
+   org-ellipsis "…")
+
+  (setq org-modern-fold-stars
+	'(("󰎤" . "󰎦") ("󰎧" . "󰎩") ("󰎪" . "󰎬") ("󰎭" . "󰎮") ("󰎱" . "󰎰")))
+
+  (with-eval-after-load 'org (global-org-modern-mode)))
 #+end_src
