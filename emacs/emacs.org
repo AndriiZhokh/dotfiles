@@ -2,7 +2,7 @@
 #+TITLE: Emacs From Scratch Configuration
 #+STARTUP: show2levels
 
-* GENERAL CONFIG
+* BASIC CONFIGURATION
 
 #+begin_src emacs-lisp
 (scroll-bar-mode -1)                                           ; hide scroll bar
@@ -28,7 +28,11 @@
                 term-mode-hook
                 shell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
 
+* FONT CONFIGURATION
+
+#+begin_src emacs-lisp
 (pcase (cons (system-name) system-type)
   (`("EPUALVIW092F" . gnu/linux)
    (set-face-attribute 'default nil :font "Iosevka NFM" :height 160))
@@ -38,12 +42,19 @@
 
   (_
    (set-face-attribute 'default nil :font "Iosevka NFM" :height 240)))
+#+end_src
 
+* COMPLINE COLOR SCHEME
+
+#+begin_src emacs-lisp
 (add-to-list 'custom-theme-load-path "~/.config/emacs/themes") ; add custom theme directory
 
 (load-theme 'compline t)                                       ; load the theme
+#+end_src
 
-;; START setup elpaca package manager
+* ELPACA SETUP
+
+#+begin_src emacs-lisp
 (defvar elpaca-installer-version 0.11)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
@@ -90,21 +101,34 @@
 
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))                               ; install and enable use-package for elpaca
-;; END setup elpaca package manager
 
+(setq use-package-always-ensure t)
+#+end_src
+
+* PACKAGES
+** EVIL
+
+#+begin_src emacs-lisp
 (use-package evil
-  :ensure t
   :demand t
   :init
   (setq evil-want-keybinding nil)
   :config
   (evil-mode 1))
+#+end_src
 
+** EVIL COLLECTION
+
+#+begin_src emacs-lisp
 (use-package evil-collection
-  :ensure t
   :after evil
   :config
   (evil-collection-init))
+#+end_src
+
+* GENERAL CONFIG
+
+#+begin_src emacs-lisp
 
 (use-package vertico
   :ensure t
@@ -221,7 +245,5 @@
 - [[https://github.com/minad/org-modern][[github] org-modern]]
 
 #+begin_src emacs-lisp
-(use-package org-modern
-  :config
-  (with-eval-after-load 'org (global-org-modern-mode)))
+(use-package org-modern)
 #+end_src
