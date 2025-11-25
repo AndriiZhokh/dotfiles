@@ -106,6 +106,59 @@
 #+end_src
 
 * PACKAGES
+** WHICH KEY
+
+#+begin_src emacs-lisp
+
+(use-package which-key
+  :config
+  (setq which-key-idle-delay 0.3)
+  (which-key-mode)
+  :diminish)
+
+#+end_src
+
+** GENERAL
+
+#+begin_src emacs-lisp
+
+(use-package general
+  :config
+  (general-create-definer azh/leader-key
+    :keymaps '(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "M-SPC")
+
+  (azh/leader-key
+    "t"  '(:ignore t                     :which-key "toggles")
+    "tt" '(counsel-load-theme            :which-key "choose theme")
+    "ts" '(hydra-text-scale/body         :which-key "scale text")
+    "tg" '(global-command-log-mode       :which-key "start global command log mode")
+    "tc" '(clm/toggle-command-log-buffer :which-key "toggle command log buffer")
+
+    "f"  '(:ignore f :which-key "file")
+    "ff" '(find-file :which-key "find file")
+
+    "b"  '(:ignore b             :which-key "buffer")
+    "be" '(eval-buffer           :which-key "eval buffer")
+    "bs" '(consult-buffer :which-key "switch to buffer")
+    "bk" '(kill-current-buffer      :which-key "kill current buffer")
+
+    "d"  '(:ignore d               :which-key "dired")
+    "df" '(dired-create-empty-file :which-key "create new file")
+
+    "o"   '(:ignore o                         :which-key "org mode")
+    "os"  '(org-insert-structure-template     :which-key "insert sorce block")
+
+    "oc"  '(:ignore c                   :which-key "clock")
+    "oco" '(org-clock-out               :which-key "clock out")
+    "oci" '(org-clock-in                :which-key "clock in")
+    "ocu" '(org-clock-update-time-maybe :which-key "clock update")
+
+    "ot"  '(org-set-tags-command :which-key "set tags")))
+
+#+end_src
+
 ** All The Icons
 https://github.com/domtronn/all-the-icons.el
 
