@@ -201,7 +201,7 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
   (evil-collection-init))
 #+end_src
 
-* GENERAL CONFIG
+** VERTICO
 
 #+begin_src emacs-lisp
 
@@ -210,16 +210,33 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
   :init
   (vertico-mode))
 
+#+end_src
+
+** ORDERLESS
+
+#+begin_export emacs-lisp
+
 (use-package orderless
   :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
+#+end_export
+
+** MARGINALIA
+#+begin_src emacs-lisp
+
 (use-package marginalia
   :ensure t
   :init
   (marginalia-mode))
+
+#+end_src
+
+** CONSULT
+
+#+begin_src emacs-lisp
 
 (use-package consult
   :ensure t
@@ -227,10 +244,22 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 	 ("C-x b" . consult-buffer)
 	 ("C-x C-r" . consult-recent-file)))
 
+#+end_src
+
+** CORFU
+
+#+begin_src emacs-lisp
+
 (use-package corfu
   :ensure t
   :init
   (global-corfu-mode))
+
+#+end_src
+
+** DIRVISH
+
+#+begin_src emacs-lisp
 
 (use-package dirvish
   :ensure t
@@ -242,6 +271,12 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
   (setq dirvish-mode-line-format
 	'(:left (sort symlink) :right (omit yank index)))
   (setq dirvish-cache-dir (expand-file-name "dirvish/" user-emacs-directory)))
+
+#+end_src
+
+** PULSAR
+
+#+begin_src emacs-lisp
 
 (use-package pulsar
   :ensure t
@@ -272,8 +307,20 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 
   (pulsar-global-mode 1))
 
+#+end_src
+
+** TRANSIENT
+
+#+begin_src emacs-lisp
+
 (use-package transient
   :ensure t)
+
+#+end_src
+
+** MAGIT
+
+#+begin_src emacs-lisp
 
 (use-package magit
   :ensure t
@@ -281,6 +328,12 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
   :commands (magit-status magit-get-current-branch)
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+#+end_src
+
+** PROJECTILE
+
+#+begin_src emacs-lisp
 
 (use-package projectile
   :diminish projectile-mode
@@ -299,24 +352,9 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
     (setq projectile-project-search-path '("~/Projects/Code")))
   (setq projectile-switch-project-action #'projectile-dired))
 
-;; Helper functions
-(defun az/display-info ()
-  "Display screen resolution and scaling information."
-  (interactive)
-  (message "Resolution: %dx%d | DPI: %.1f | Scaling: %s"
-	   (display-pixel-width)
-	   (display-pixel-height)
-	   (/ (display-pixel-width) (/ (display-pixel-height) 25.4))
-	   (or (frame-parameter nil 'display-scaling-factor) "N/A")))
-
-(defun az/convert-to-unix-line-endings ()
-  "Convert current buffer to Unix line endings (LF)."
-  (interactive)
-  (set-buffer-file-coding-system 'unix)
-  (save-buffer))
 #+end_src
 
-* ORG MODE
+** ORG MODE
 
 #+begin_src emacs-lisp
 
@@ -451,7 +489,7 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 
 #+end_src
 
-* ORG MODERN 
+** ORG MODERN 
 - [[https://github.com/minad/org-modern][[github] org-modern]]
 
 #+begin_src emacs-lisp
@@ -476,4 +514,31 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 	'(("󰎤" . "󰎦") ("󰎧" . "󰎩") ("󰎪" . "󰎬") ("󰎭" . "󰎮") ("󰎱" . "󰎰")))
 
   (with-eval-after-load 'org (global-org-modern-mode)))
+#+end_src
+
+* HELPER FUNCTIONS
+** DISPLAY INFO
+
+#+begin_src emacs-lisp
+
+(defun az/display-info ()
+  "Display screen resolution and scaling information."
+  (interactive)
+  (message "Resolution: %dx%d | DPI: %.1f | Scaling: %s"
+	   (display-pixel-width)
+	   (display-pixel-height)
+	   (/ (display-pixel-width) (/ (display-pixel-height) 25.4))
+	   (or (frame-parameter nil 'display-scaling-factor) "N/A")))
+
+#+end_src
+** CONVERT TO UNIX LINE ENDINGS
+
+#+begin_src emacs-lisp
+
+(defun az/convert-to-unix-line-endings ()
+  "Convert current buffer to Unix line endings (LF)."
+  (interactive)
+  (set-buffer-file-coding-system 'unix)
+  (save-buffer))
+
 #+end_src
