@@ -542,3 +542,12 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
   (save-buffer))
 
 #+end_src
+
+* KEYBINDINGS
+** GLOBAL
+
+#+begin_src emacs-lisp
+
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit) ; escape to quit prompts
+
+#+end_src
