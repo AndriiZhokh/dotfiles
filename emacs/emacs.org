@@ -49,7 +49,10 @@
 #+begin_src emacs-lisp
 (add-to-list 'custom-theme-load-path "~/.config/emacs/themes") ; add custom theme directory
 
-(load-theme 'compline t)                                       ; load the theme
+(if (file-exists-p "~/.config/emacs/themes/compline-theme.el")
+    (load-theme 'compline t)
+  (message "Compline theme not found, using default theme"))
+                                       ; load the theme
 #+end_src
 
 * ELPACA SETUP
@@ -486,6 +489,36 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 
   (define-key global-map (kbd "C-c j")
     (lambda () (interactive) (org-capture nil "jj"))))
+
+#+end_src
+
+*** CONFIGURE BABEL LANGUAGES
+
+#+begin_src emacs-lisp :tangle no
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((emacs-lisp . t)
+    (python . t)))
+
+(setq org-confirm-babel-evaluate nil)
+
+(push '("conf-unix" . conf-unix) org-src-lang-modes)
+
+#+end_src
+
+*** AUTO TANGLE CONFIGURATION FILES
+
+#+begin_src emacs-lisp
+
+(defun azh/org-babel-tangle-config ()
+  (when (string-equal (buffer-file-name)
+                      (expand-file-name "~/Projects/dotfiles/emacs/emacs.org"))
+    ;; Dynamic scoping to the rescue
+    (let ((org-confirm-babel-evaluate nil))
+      (org-babel-tangle))))
+
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'azh/org-babel-tangle-config)))
 
 #+end_src
 
