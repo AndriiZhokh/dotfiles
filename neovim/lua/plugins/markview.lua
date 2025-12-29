@@ -1,5 +1,7 @@
 return {
   'OXY2DEV/markview.nvim',
+  priority = 900,
+  dependencies = { 'nvim-treesitter/nvim-treesitter' },
   config = function()
     local markview = require 'markview'
     local which_key = require 'which-key'
