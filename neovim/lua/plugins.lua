@@ -28,7 +28,6 @@ local plugins = {
   require 'plugins.zen-mode',
   require 'plugins.fzf-lua',
   require 'plugins.origami',
-  require 'plugins.dashboard',
 
   -- TODO: to check new plugins
   -- https://github.com/krshrimali/context-pilot.nvim - git helper plugin

@@ -10,6 +10,7 @@ vim.g.maplocalleader = ' '
 
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
+vim.opt.shortmess:append("I")
 
 local FoldMethods = {
   indent = 'indent',
