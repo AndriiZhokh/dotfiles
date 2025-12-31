@@ -89,39 +89,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Custom Markdown folding
--- _G.ManualMarkdownFold = function()
---   local line = vim.api.nvim_buf_get_lines(0, vim.v.lnum - 1, vim.v.lnum, false)[1]
---
---   local match = string.match(line, '^(#+) %S')
---
---   if match then
---     return '>' .. #match
---   else
---     return '='
---   end
--- end
-
--- _G.PrettyMarkdownFoldText = function()
---   local line = vim.api.nvim_buf_get_lines(0, vim.v.foldstart - 1, vim.v.foldstart, false)[1]
---
---   local clean_line = string.gsub(line, '^#+ ', '')
---
---   local line_count = vim.v.foldend - vim.v.foldstart + 1
---
---   local display_text = string.format('%s ... [%d lines]', line, line_count)
---
---   return display_text
--- end
-
--- Autocommand to apply our custom folding script ONLY to Markdown files.
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = 'markdown',
---   desc = 'Use manual regex-based folding for Markdown.',
---   callback = function()
---     vim.opt_local.foldexpr = 'v:lua._G.ManualMarkdownFold()'
---     vim.opt_local.foldtext = 'v:lua._G.PrettyMarkdownFoldText()'
---
---     vim.keymap.set('n', '<Tab>', 'za', { buffer = true, desc = 'Toggle fold' })
---   end,
--- })
