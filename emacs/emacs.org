@@ -334,6 +334,14 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 
 #+end_src
 
+** IVY
+
+#+begin_src emacs-lisp
+
+(use-package ivy
+  :ensure t)
+#+end_src
+
 ** PROJECTILE
 
 #+begin_src emacs-lisp
@@ -547,6 +555,17 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 	'(("󰎤" . "󰎦") ("󰎧" . "󰎩") ("󰎪" . "󰎬") ("󰎭" . "󰎮") ("󰎱" . "󰎰")))
 
   (with-eval-after-load 'org (global-org-modern-mode)))
+#+end_src
+
+** ORG VISUAL FILL COLUMN
+
+#+begin_src emacs-lisp
+
+(use-package visual-fill-column
+  :init (setq visual-fill-column-width 160
+              visual-fill-column-center-text t)
+  :hook (org-mode . visual-fill-column-mode))
+
 #+end_src
 
 * HELPER FUNCTIONS
