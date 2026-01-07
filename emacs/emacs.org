@@ -109,6 +109,16 @@
 #+end_src
 
 * PACKAGES
+** RIPGREP
+Needed for `projectile-ripgrep`
+
+#+begin_src emacs-lisp
+
+(use-package ripgrep
+  :defer t)
+
+#+end_src
+
 ** WHICH KEY
 
 #+begin_src emacs-lisp
@@ -362,6 +372,30 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
   (when (file-directory-p "~/Projects/Code")
     (setq projectile-project-search-path '("~/Projects/Code")))
   (setq projectile-switch-project-action #'projectile-dired))
+
+#+end_src
+
+#+begin_src emacs-lisp
+
+(with-eval-after-load 'projectile
+  (when (eq system-type 'windows-nt)
+    (let* ((rg-exe-path (shell-command-to-string "where rg.exe"))
+           ;; 'where' can return multiple lines if multiple rg.exe exist; 
+           ;; we take the first one and trim whitespace/newlines
+           (clean-path (when (not (string-empty-p rg-exe-path))
+                         (string-trim (car (split-string rg-exe-path "\n")))))
+           ;; Get the directory containing the exe
+           (rg-dir (when clean-path 
+                     (file-name-directory clean-path))))
+
+      (if (and rg-dir (file-directory-p rg-dir))
+          (progn
+            ;; Add to Emacs path
+            (add-to-list 'exec-path rg-dir)
+            ;; Add to System path for Projectile's subprocesses
+            (setenv "PATH" (concat rg-dir ";" (getenv "PATH")))
+            (message "Projectile: ripgrep found and loaded from %s" rg-dir))
+        (message "Projectile: ripgrep (rg.exe) not found on system path.")))))
 
 #+end_src
 
