@@ -18,10 +18,12 @@ return {
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       { '<leader>b', group = '[B]uffer' },
       { '<leader>m', group = '[M]ini' },
-      { '<leader>f', group = '[F]ind' },
+      { '<leader>f', group = '[F]ormat' },
       { '<leader>n', group = '[N]otes' },
 
-      { '<leader>bd', ':bd<CR>', desc = '[D]elete current buffer' }
+      { '<leader>bd', ':bd<CR>', desc = '[D]elete current buffer' },
+
+      { '<leader>fj', ':%!jq .<CR>', desc = '[F]ormat JSON with jq', { silent = true } }
     }
   end,
 }

@@ -7,8 +7,8 @@ return {
     local which_key = require 'which-key'
 
     which_key.add {
-      { '<leader>ff', fzf_lua.files, desc = '[F]ind [F]iles' },
-      { '<leader>fg', fzf_lua.live_grep, desc = '[F]ind with Live [G]rep'},
+      { '<leader>sf', fzf_lua.files, desc = '[S]earch [F]iles' },
+      { '<leader>sg', fzf_lua.grep, desc = '[S]earch with [G]rep'},
       { '<leader><leader>', fzf_lua.buffers, desc = '[ ] Find existing buffers' },
     }
   end,
