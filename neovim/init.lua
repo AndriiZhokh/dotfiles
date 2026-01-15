@@ -89,3 +89,48 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Custom Welcome Message Logic
+local function show_welcome()
+    -- Only show if Neovim is opened without file arguments
+    if vim.fn.argc() > 0 or vim.fn.line2byte('$') ~= -1 or table.getn(vim.api.nvim_list_wins()) > 1 then
+        return
+    end
+
+    local buf = vim.api.nvim_create_buf(false, true)
+    local welcome_text = {
+        "",
+        "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+        "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+        "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+        "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+        "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+        "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+        "",
+        "             Welcome back, " .. os.getenv("USER") .. "!",
+        "",
+        "        [e] New File    [f] Find File    [q] Quit",
+    }
+
+    -- Set the lines in the buffer
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, welcome_text)
+
+    -- Buffer options to make it feel like a dashboard
+    vim.api.nvim_set_option_value("buftype", "nofile", { buf = buf })
+    vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+    vim.api.nvim_set_option_value("number", false, { scope = "local" })
+    vim.api.nvim_set_option_value("relativenumber", false, { scope = "local" })
+
+    -- Switch to the new buffer
+    vim.api.nvim_set_current_buf(buf)
+    
+    -- Optional: simple keybindings for the dashboard
+    local opts = { buffer = buf, silent = true }
+    vim.keymap.set('n', 'e', ':enew<CR>', opts)
+    vim.keymap.set('n', 'f', ':Telescope find_files<CR>', opts) -- Requires Telescope
+    vim.keymap.set('n', 'q', ':qa<CR>', opts)
+end
+
+-- Run the function when Neovim starts
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = show_welcome
+})
