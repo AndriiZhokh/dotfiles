@@ -7,7 +7,7 @@ local COLORSCHEMES = {
 }
 local colorscheme = 'compline'
 
-local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. COLORSCHEMES.nord)
+local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. COLORSCHEMES.everforest)
 
 if not status_ok then
     vim.notify('colorscheme ' .. colorscheme .. ' not found')

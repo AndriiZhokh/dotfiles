@@ -126,7 +126,7 @@ local function show_welcome()
     -- Optional: simple keybindings for the dashboard
     local opts = { buffer = buf, silent = true }
     vim.keymap.set('n', 'e', ':enew<CR>', opts)
-    vim.keymap.set('n', 'f', ':Telescope find_files<CR>', opts) -- Requires Telescope
+    vim.keymap.set('n', 'f', ':FzfLua files<CR>', opts) -- Requires FzfLua
     vim.keymap.set('n', 'q', ':qa<CR>', opts)
 end
 
