@@ -131,6 +131,6 @@ local function show_welcome()
 end
 
 -- Run the function when Neovim starts
-vim.api.nvim_create_autocmd("VimEnter", {
-    callback = show_welcome
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--     callback = show_welcome
+-- })
