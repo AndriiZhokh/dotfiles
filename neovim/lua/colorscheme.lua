@@ -4,11 +4,12 @@ local COLORSCHEMES = {
   nord = 'nord',
   terafox = 'terafox',
   kanagawa_paper = 'kanagawa-paper',
-  compline = 'compline'
+  compline = 'compline',
+  vesper = 'vesper'
 }
 local colorscheme = 'compline'
 
-local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. COLORSCHEMES.compline)
+local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. COLORSCHEMES.vesper)
 
 if not status_ok then
     vim.notify('colorscheme ' .. colorscheme .. ' not found')

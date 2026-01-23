@@ -29,6 +29,7 @@ local plugins = {
   require 'plugins.fzf-lua',
   require 'plugins.origami',
   require 'plugins.kanagawa-paper',
+  require 'plugins.vesper',
 
   -- TODO: to check new plugins
   -- https://github.com/krshrimali/context-pilot.nvim - git helper plugin
