@@ -596,7 +596,7 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 #+begin_src emacs-lisp
 
 (use-package visual-fill-column
-  :init (setq visual-fill-column-width 160
+  :init (setq visual-fill-column-width 140
               visual-fill-column-center-text t)
   :hook (org-mode . visual-fill-column-mode))
 
