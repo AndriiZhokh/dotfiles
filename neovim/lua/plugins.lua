@@ -19,7 +19,7 @@ local plugins = {
   require 'plugins.catppuccin',
   require 'plugins.yugen',
   require 'plugins.nord',
-  require 'plugins.markview',
+  -- require 'plugins.markview', brocken after updated to 0.12.0 of neovim
   require 'plugins.treesitter',
   require 'plugins.autopairs',
   require 'plugins.mini',
