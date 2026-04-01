@@ -1,38 +1,28 @@
 -- Highlight, edit, and navigate code
--- NOTE: integrate zig as c compiler
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
+  lazy = false,
   priority = 1000,
-  opts = {
-    ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'vim', 'vimdoc' },
-    -- Autoinstall languages that are not installed
-    auto_install = true,
-    highlight = {
-      enable = true,
-      -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-      --  If you are experiencing weird indenting issues, add the language to
-      --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-      additional_vim_regex_highlighting = { 'ruby' },
-    },
-    indent = { enable = true, disable = { 'ruby' } },
-    folding = {
-      enable = true,
-    },
-  },
-  config = function(_, opts)
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+  config = function()
+    require('nvim-treesitter').setup()
 
-    -- Prefer git instead of curl in order to improve connectivity in some environments
-    require('nvim-treesitter.install').prefer_git = true
-    ---@diagnostic disable-next-line: missing-fields
-    require('nvim-treesitter.configs').setup(opts)
+    -- Install parsers if missing (runs async, no-op if already installed)
+    require('nvim-treesitter').install { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'vim', 'vimdoc' }
 
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    -- Auto-install parser when opening a file with a missing parser
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(ev)
+        local lang = vim.treesitter.language.get_lang(ev.match) or ev.match
+        if not pcall(vim.treesitter.language.inspect, lang) then
+          local install = require('nvim-treesitter').install({ lang })
+          if install and install.wait then
+            install:wait(60000)
+            -- Re-trigger FileType so ftplugin runs with the parser available
+            vim.cmd('doautocmd FileType ' .. ev.match)
+          end
+        end
+      end,
+    })
   end,
 }

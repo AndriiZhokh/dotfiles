@@ -13,23 +13,25 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+  require 'plugins.treesitter',
+
+  -- color schemes
   require 'plugins.everforest',
   require 'plugins.lemons',
   require 'plugins.nightfox',
   require 'plugins.catppuccin',
   require 'plugins.yugen',
   require 'plugins.nord',
-  -- require 'plugins.markview', brocken after updated to 0.12.0 of neovim
-  require 'plugins.treesitter',
+  require 'plugins.vesper',
+  require 'plugins.origami',
+  require 'plugins.kanagawa-paper',
+
+  require 'plugins.markview', -- brocken after updated to 0.12.0 of neovim
   require 'plugins.autopairs',
   require 'plugins.mini',
   require 'plugins.which-key',
   require 'plugins.telescope',
-  require 'plugins.zen-mode',
   require 'plugins.fzf-lua',
-  require 'plugins.origami',
-  require 'plugins.kanagawa-paper',
-  require 'plugins.vesper',
 
   -- TODO: to check new plugins
   -- https://github.com/krshrimali/context-pilot.nvim - git helper plugin
