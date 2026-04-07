@@ -15,20 +15,20 @@ return {
     end
 
     -- Auto-install parser when opening a file with a missing parser
-    vim.api.nvim_create_autocmd('FileType', {
-      callback = function(ev)
-        local lang = vim.treesitter.language.get_lang(ev.match) or ev.match
-        if not pcall(vim.treesitter.language.inspect, lang) then
-          if ts.install then
-            local install = ts.install({ lang })
-            if install and install.wait then
-              install:wait(60000)
-              -- Re-trigger FileType so ftplugin runs with the parser available
-              vim.cmd('doautocmd FileType ' .. ev.match)
-            end
-          end
-        end
-      end,
-    })
+    -- vim.api.nvim_create_autocmd('FileType', {
+    --   callback = function(ev)
+    --     local lang = vim.treesitter.language.get_lang(ev.match) or ev.match
+    --     if not pcall(vim.treesitter.language.inspect, lang) then
+    --       if ts.install then
+    --         local install = ts.install({ lang })
+    --         if install and install.wait then
+    --           install:wait(60000)
+    --           -- Re-trigger FileType so ftplugin runs with the parser available
+    --           vim.cmd('doautocmd FileType ' .. ev.match)
+    --         end
+    --       end
+    --     end
+    --   end,
+    -- })
   end,
 }
