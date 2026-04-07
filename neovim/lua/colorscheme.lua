@@ -7,7 +7,7 @@ local COLORSCHEMES = {
   compline = 'compline',
   vesper = 'vesper'
 }
-local colorscheme = COLORSCHEMES.vesper
+local colorscheme = COLORSCHEMES.compline
 
 local status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
 
