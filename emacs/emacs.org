@@ -33,6 +33,7 @@
 * FONT CONFIGURATION
 
 #+begin_src emacs-lisp
+
 (pcase (cons (system-name) system-type)
   (`("EPUALVIW092F" . gnu/linux)
    (set-face-attribute 'default nil :font "Iosevka NFM" :height 160))
@@ -42,6 +43,46 @@
 
   (_
    (set-face-attribute 'default nil :font "Iosevka NFM" :height 240)))
+
+(defun my/monitor-dpi (&optional frame)
+  "Return approximate DPI of the monitor FRAME is on."
+  (let* ((attrs (frame-monitor-attributes frame))
+         (geom (cdr (assq 'geometry attrs)))
+         (mm (cdr (assq 'mm-size attrs)))
+         (px-width (nth 2 geom))
+         (mm-width (car mm)))
+    (if (and mm-width (> mm-width 0))
+        (/ (* px-width 25.4) mm-width)
+      ;; WSL2 / headless: mm-size is bogus (0 or nil).
+      ;; Guess DPI from pixel width: >=2560 => 2K+, >=1920 => FHD.
+      (cond
+       ((and px-width (>= px-width 3840)) 200.0)  ; 4K
+       ((and px-width (>= px-width 2560)) 120.0)  ; 2K / QHD
+       ((and px-width (>= px-width 1920)) 100.0)  ; 1080p
+       (t 96.0)))))
+
+(defun my/font-height-for-frame (&optional frame)
+  "Compute a sensible font :height for FRAME's monitor."
+  (let ((dpi (my/monitor-dpi frame)))
+    (cond
+     ((>= dpi 200) 160)   ; 4K / retina
+     ((>= dpi 140) 130)   ; high-DPI laptop
+     ((>= dpi 110) 130)   ; QHD / 2K
+     (t             110)))) ; standard 1080p
+
+(defun my/apply-font-for-frame (frame &rest _)
+  (with-selected-frame frame
+    (set-face-attribute 'default frame
+                        :height (my/font-height-for-frame frame))))
+
+;; Apply on creation and when moved/resized
+(add-hook 'after-make-frame-functions #'my/apply-font-for-frame)
+(add-hook 'move-frame-functions       #'my/apply-font-for-frame)
+(add-hook 'window-size-change-functions
+          (lambda (frame) (my/apply-font-for-frame frame)))
+
+;; And once for the initial frame
+(my/apply-font-for-frame (selected-frame))
 #+end_src
 
 * COMPLINE COLOR SCHEME
@@ -620,6 +661,7 @@ Declarative UIs in Emacs with [[https://github.com/d12frosted/vui.el][vui.el]]
 	   (or (frame-parameter nil 'display-scaling-factor) "N/A")))
 
 #+end_src
+
 ** CONVERT TO UNIX LINE ENDINGS
 
 #+begin_src emacs-lisp
