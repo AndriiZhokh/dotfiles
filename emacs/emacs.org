@@ -646,9 +646,12 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 ** VUI
 Declarative UIs in Emacs with [[https://github.com/d12frosted/vui.el][vui.el]]
 
+* PACKAGES TO TRY
 ** BUFFER TO PDF
 Package to convert any emacs buffer to pdf file [[https://github.com/protesilaos/buffer-to-pdf][prot: buffer-to-pdf]]
-
+** MEOW + GOD-MODE
+Try to set up [[https://github.com/meow-edit/meow][meow]] and [[https://github.com/emacsorphanage/god-mode][god-mode]] instead of evil and evli-collection
+[[https://joshblais.com/blog/meow-in-emacs/][Joshua Blais - Meow Made me Leave Evil-Mode]]
 * HELPER FUNCTIONS
 ** DISPLAY INFO
 
