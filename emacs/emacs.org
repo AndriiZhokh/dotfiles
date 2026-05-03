@@ -646,6 +646,9 @@ After first install run the (M-x) all-the-icons-install-fonts and select directo
 ** VUI
 Declarative UIs in Emacs with [[https://github.com/d12frosted/vui.el][vui.el]]
 
+** BUFFER TO PDF
+Package to convert any emacs buffer to pdf file [[https://github.com/protesilaos/buffer-to-pdf][prot: buffer-to-pdf]]
+
 * HELPER FUNCTIONS
 ** DISPLAY INFO
 
